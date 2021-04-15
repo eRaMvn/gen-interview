@@ -55,7 +55,7 @@ const HomeBody = () => {
                     <Grid.Row>
                         <Grid.Column width={8}>
                             <Header as="h3" style={{ fontSize: '2em' }}>
-                                We Help Companies and Companions
+                                W Help Companies and Companions
                             </Header>
                             <p style={{ fontSize: '1.33em' }}>
                                 We can give your company superpowers to do

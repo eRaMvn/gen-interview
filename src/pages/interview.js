@@ -1,122 +1,174 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import {
     Button,
     Container,
-    Divider,
-    Grid,
     Header,
-    Image,
+    Icon,
+    Grid,
     Segment,
+    Dropdown
 } from 'semantic-ui-react';
 import ResponsiveContainer from '../components/ResponsiveContainer';
+import securityQData from '../data/security.json'
+import behaviorQData from '../data/behavioral.json'
 
-const HomepageLayout = () => (
-    <ResponsiveContainer>
-        <Segment style={{ padding: '8em 0em' }} vertical>
-            <Grid container stackable verticalAlign="middle">
-                <Grid.Row>
-                    <Grid.Column width={8}>
-                        <Header as="h3" style={{ fontSize: '2em' }}>
-                            Interview We Help Companies and Companions
-                        </Header>
-                        <p style={{ fontSize: '1.33em' }}>
-                            We can give your company superpowers to do things
-                            that they never thought possible. Let us delight
-                            your customers and empower your needs... through
-                            pure data analytics.
-                        </p>
-                        <Header as="h3" style={{ fontSize: '2em' }}>
-                            We Make Bananas That Can Dance
-                        </Header>
-                        <p style={{ fontSize: '1.33em' }}>
-                            Yes that's right, you thought it was the stuff of
-                            dreams, but even bananas can be bioengineered.
-                        </p>
-                    </Grid.Column>
-                    <Grid.Column floated="right" width={6}>
-                        <Image
-                            bordered
-                            rounded
-                            size="large"
-                            src="/images/wireframe/white-image.png"
-                        />
-                    </Grid.Column>
-                </Grid.Row>
-                <Grid.Row>
-                    <Grid.Column textAlign="center">
-                        <Button size="huge">Check Them Out</Button>
-                    </Grid.Column>
-                </Grid.Row>
-            </Grid>
-        </Segment>
 
-        <Segment style={{ padding: '0em' }} vertical>
-            <Grid celled="internally" columns="equal" stackable>
-                <Grid.Row textAlign="center">
-                    <Grid.Column
-                        style={{ paddingBottom: '5em', paddingTop: '5em' }}
-                    >
-                        <Header as="h3" style={{ fontSize: '2em' }}>
-                            "What a Company"
-                        </Header>
-                        <p style={{ fontSize: '1.33em' }}>
-                            That is what they all say about us
-                        </p>
-                    </Grid.Column>
-                    <Grid.Column
-                        style={{ paddingBottom: '5em', paddingTop: '5em' }}
-                    >
-                        <Header as="h3" style={{ fontSize: '2em' }}>
-                            "I shouldn't have gone with their competitor."
-                        </Header>
-                        <p style={{ fontSize: '1.33em' }}>
-                            <Image avatar src="/images/avatar/large/nan.jpg" />
-                            <b>Nan</b> Chief Fun Officer Acme Toys
-                        </p>
-                    </Grid.Column>
-                </Grid.Row>
-            </Grid>
-        </Segment>
+const questionTypes = [
+    { key: 'sec', value: 'sec', text: 'security' },
+    { key: 'swe', value: 'swe', text: 'software engineering' },
+    { key: 'be', value: 'be', text: 'behavioral' },
+]
 
-        <Segment style={{ padding: '8em 0em' }} vertical>
-            <Container text>
-                <Header as="h3" style={{ fontSize: '2em' }}>
-                    Breaking The Grid, Grabs Your Attention
-                </Header>
-                <p style={{ fontSize: '1.33em' }}>
-                    Instead of focusing on content creation and hard work, we
-                    have learned how to master the art of doing nothing by
-                    providing massive amounts of whitespace and generic content
-                    that can seem massive, monolithic and worth your attention.
-                </p>
-                <Button as="a" size="large">
-                    Read More
-                </Button>
 
-                <Divider
-                    as="h4"
-                    className="header"
-                    horizontal
-                    style={{ margin: '3em 0em', textTransform: 'uppercase' }}
-                >
-                    <a href="https://something.com">Case Studies</a>
-                </Divider>
+const InterviewHeader = ({ mobile }) => {
+    const [dropDownState, setDropDownState] = useState([])
 
-                <Header as="h3" style={{ fontSize: '2em' }}>
-                    Did We Tell You About Our Bananas?
-                </Header>
-                <p style={{ fontSize: '1.33em' }}>
-                    Yes I know you probably disregarded the earlier boasts as
-                    non-sequitur filler content, but it's really true. It took
-                    years of gene splicing and combinatory DNA research, but our
-                    bananas can really dance.
-                </p>
-                <Button as="a" size="large">
-                    I'm Still Quite Interested
-                </Button>
-            </Container>
-        </Segment>
-    </ResponsiveContainer>
+    const handleDropDownChange = (e, {value}) => {
+        setDropDownState(value)
+    }
+
+    const [securityQuestions, setSecurityQuestions] = useState({})
+    const [behavioralQuestions, setBehavioralQuestions] = useState({})
+    console.log(behavioralQuestions)
+
+    const [shownQuestion, setShownQuestion] = useState("Try The Next Button :)")
+    // An array containing the already shown question
+    const [alreadyShownQs, setAlreadyShownQs] = useState([])
+
+    const generateRandomQuestion = (questionDict) => {
+        const keys = Object.keys(questionDict);
+        // If all questions looped through, restart again
+        if (alreadyShownQs.length === keys.length) {
+            setAlreadyShownQs([])
+            setShownQuestion(keys[Math.floor(Math.random() * keys.length)])
+            return
+        }
+
+        while (true) {
+            const question = keys[Math.floor(Math.random() * keys.length)];
+            if (alreadyShownQs.includes(question)) {
+                continue
+            }
+            setAlreadyShownQs(alreadyShownQs => [...alreadyShownQs, question])
+            setShownQuestion(question)
+            return
+        }
+
+    }
+
+    useEffect(() => {
+        setSecurityQuestions(securityQData)
+        setBehavioralQuestions(behaviorQData)
+    }, [])
+
+    return (
+    <Container text>
+        <Header
+            as="h1"
+            content="Question Generator"
+            inverted
+            style={{
+                fontSize: mobile ? '2em' : '4em',
+                fontWeight: 'normal',
+                marginTop: mobile ? '0.5em' : '1.5em',
+            }}
+        />
+        <Dropdown
+            clearable
+            fluid
+            multiple
+            search
+            selection
+            options={questionTypes}
+            placeholder='Select Question Types'
+            onChange={handleDropDownChange}
+            style={{
+                marginBottom: mobile ? '0.25em' : '1.25em',
+            }}
+        />
+
+        <Button primary size="huge" onClick={() => generateRandomQuestion(securityQuestions)}>
+            Next
+            <Icon name="random right" />
+        </Button>
+        <Button color="red" size="huge">
+            Record
+            <Icon name="record right" />
+        </Button>
+
+        <p style={{
+                marginTop: mobile ? '0.25em' : '1.25em',
+            }}>Question 1 out of 100</p>
+
+        <Header
+            as="h2"
+            content={shownQuestion}
+            inverted
+            style={{
+                fontSize: mobile ? '0.5em' : '2.5em',
+                fontWeight: 'normal',
+            }}
+        />
+    </Container>
+)};
+
+InterviewHeader.propTypes = {
+    mobile: PropTypes.bool,
+};
+
+const InterviewBody = () => {
+    return (
+        <>
+            <Segment style={{ padding: '8em 0em' }} vertical>
+                <Grid container stackable verticalAlign="middle">
+                    <Grid.Row>
+                        <Grid.Column width={8}>
+                            <Header as="h3" style={{ fontSize: '2em' }}>
+                               Comment and Context:
+                            </Header>
+                            <p style={{ fontSize: '1.33em' }}>
+                                We can give your company superpowers to do
+                                things that they never thought possible. Let us
+                                delight your customers and empower your needs...
+                                through pure data analytics.
+                            </p>
+                            <Header as="h3" style={{ fontSize: '2em' }}>
+                               Resources:
+                            </Header>
+                            <p style={{ fontSize: '1.33em' }}>
+                                Yes that's right, you thought it was the stuff
+                                of dreams, but even bananas can be
+                                bioengineered.
+                            </p>
+                        </Grid.Column>
+                        <Grid.Column floated="right" width={6}>
+                            <Header as="h3" style={{ fontSize: '2em' }}>
+                                Full list of questions:
+                            </Header>
+                            <Dropdown
+                                placeholder='Select List'
+                                fluid
+                                selection
+                                options={questionTypes}
+
+                            />
+                            <Button size="medium" style={{
+                                    marginTop: '0.55em',
+                                }}>Download</Button>
+                        </Grid.Column>
+                    </Grid.Row>
+                </Grid>
+            </Segment>
+        </>
+    );
+};
+
+const InterviewLayout = () => (
+    <ResponsiveContainer
+        header={<InterviewHeader />}
+        body={<InterviewBody />}
+    ></ResponsiveContainer>
 );
 
-export default HomepageLayout;
+export default InterviewLayout;

@@ -101,7 +101,6 @@ const DesktopContainer = ({ header, body }) => {
                     {header}
                 </Segment>
             </Visibility>
-
             {body}
             <Footer />
         </Media>
@@ -190,6 +189,7 @@ const MobileContainer = ({ header, body }) => {
                     </Segment>
 
                     {body}
+                    <Footer />
                 </Sidebar.Pusher>
             </Sidebar.Pushable>
         </Media>
