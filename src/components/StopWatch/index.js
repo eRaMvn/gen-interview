@@ -67,10 +67,16 @@ export default function StopWatch() {
 
     return (
         <Container>
+            <p>Stop Watch</p>
             <p>{formatTime(timer)}</p>
             <div>
                 {!isActive && !isPaused ? (
-                    <Button primary size="small" onClick={handleStart}>
+                    <Button
+                        primary
+                        size="small"
+                        onClick={handleStart}
+                        color="red"
+                    >
                         Start
                     </Button>
                 ) : isPaused ? (
@@ -83,10 +89,10 @@ export default function StopWatch() {
                     </Button>
                 )}
                 <Button
-                    primary
                     size="small"
                     onClick={handleReset}
                     disabled={!isActive}
+                    color="green"
                 >
                     Reset
                 </Button>

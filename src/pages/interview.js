@@ -9,6 +9,7 @@ import {
     Segment,
     Dropdown,
 } from 'semantic-ui-react';
+import { useReactMediaRecorder } from 'react-media-recorder';
 import StopWatch from '../components/StopWatch';
 import ResponsiveContainer from '../components/ResponsiveContainer';
 import securityQData from '../data/security.json';
@@ -37,11 +38,55 @@ const InterviewHeader = ({ mobile }) => {
     // An array containing the already shown question
     const [alreadyShownQs, setAlreadyShownQs] = useState([]);
 
+    const {
+        startRecording,
+        stopRecording,
+        mediaBlobUrl,
+    } = useReactMediaRecorder({ audio: true });
+
+    const [recordButtonState, setRecordButtonState] = useState(
+        'Record Yourself',
+    );
+
+    const checkIfAudioEnabled = () => {
+        navigator.getUserMedia(
+            { audio: true },
+            function (stream) {
+                console.log(stream.getAudioTracks().length);
+                if (stream.getAudioTracks().length > 0) {
+                    console.log('here');
+                    enableRecording(true);
+                }
+                return enableRecording(false);
+            },
+            function () {
+                return enableRecording(false);
+            },
+        );
+    };
+
+    const [recordButtonEnabled, enableRecording] = useState(true);
+    useEffect(() => {
+        checkIfAudioEnabled();
+    }, []);
+
+    // Function to handle the recording button
+    const handleRecorder = () => {
+        if (recordButtonState == 'Record Yourself') {
+            startRecording();
+            setRecordButtonState('Stop Recording...');
+        } else {
+            stopRecording();
+            setRecordButtonState('Record Yourself');
+        }
+    };
+
     const questionLookUpDict = {
         sec: securityQuestions,
         be: behavioralQuestions,
     };
 
+    // Function to handle change in the filter bar for question types
     const handleDropDownChange = (e, { value }) => {
         setDropDownState(value);
         // Reset the list of questions when the filter changes
@@ -93,6 +138,25 @@ const InterviewHeader = ({ mobile }) => {
                     marginTop: mobile ? '0.5em' : '1.5em',
                 }}
             />
+
+            <Button
+                primary
+                size="large"
+                onClick={() => generateRandomQuestion(combinedQuestions)}
+            >
+                Next
+                <Icon name="random right" />
+            </Button>
+            <Button
+                color="red"
+                size="large"
+                onClick={handleRecorder}
+                disabled={!recordButtonEnabled}
+            >
+                {recordButtonState}
+                <Icon name="record right" />
+            </Button>
+
             <Dropdown
                 clearable
                 fluid
@@ -103,22 +167,25 @@ const InterviewHeader = ({ mobile }) => {
                 placeholder="Select Question Types"
                 onChange={handleDropDownChange}
                 style={{
+                    marginTop: mobile ? '0.25em' : '1.25em',
                     marginBottom: mobile ? '0.25em' : '1.25em',
                 }}
             />
 
-            <Button
-                primary
-                size="huge"
-                onClick={() => generateRandomQuestion(combinedQuestions)}
-            >
-                Next
-                <Icon name="random right" />
-            </Button>
-            <Button color="red" size="huge">
-                Record Yourself
-                <Icon name="record right" />
-            </Button>
+            <Grid celled="internally" columns="equal" stackable>
+                <Grid.Column>
+                    <StopWatch />
+                </Grid.Column>
+                <Grid.Column>
+                    <p
+                        style={{
+                            marginTop: mobile ? '0.25em' : '1.25em',
+                        }}
+                    >
+                        <audio src={mediaBlobUrl} controls />
+                    </p>
+                </Grid.Column>
+            </Grid>
 
             <p
                 style={{
@@ -129,14 +196,12 @@ const InterviewHeader = ({ mobile }) => {
                 {Object.keys(combinedQuestions).length}
             </p>
 
-            <StopWatch />
-
             <Header
                 as="h2"
                 content={shownQuestion}
                 inverted
                 style={{
-                    fontSize: mobile ? '1.25em' : '2em',
+                    fontSize: mobile ? '1em' : '1.5em',
                     fontWeight: 'normal',
                 }}
             />
