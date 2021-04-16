@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import PropTypes from 'prop-types';
 import {
     Button,
@@ -20,21 +20,31 @@ const questionTypes = [
     { key: 'be', value: 'be', text: 'behavioral' },
 ]
 
+const InterviewContext = React.createContext()
 
 const InterviewHeader = ({ mobile }) => {
     const [dropDownState, setDropDownState] = useState([])
-
-    const handleDropDownChange = (e, {value}) => {
-        setDropDownState(value)
-    }
-
     const [securityQuestions, setSecurityQuestions] = useState({})
     const [behavioralQuestions, setBehavioralQuestions] = useState({})
-    console.log(behavioralQuestions)
-
+    const [combinedQuestions, setCombinedQuestions] = useState({})
     const [shownQuestion, setShownQuestion] = useState("Try The Next Button :)")
     // An array containing the already shown question
     const [alreadyShownQs, setAlreadyShownQs] = useState([])
+
+    const questionLookUpDict = {
+        'sec': securityQuestions,
+        'be': behavioralQuestions
+    }
+
+    const handleDropDownChange = (e, {value}) => {
+        setDropDownState(value)
+        let newQuestionSet = {}
+        for (let selection of value){
+            newQuestionSet = {...newQuestionSet, ...questionLookUpDict[selection]}
+        }
+        setCombinedQuestions(newQuestionSet)
+        setAlreadyShownQs([])
+    }
 
     const generateRandomQuestion = (questionDict) => {
         const keys = Object.keys(questionDict);
@@ -45,16 +55,16 @@ const InterviewHeader = ({ mobile }) => {
             return
         }
 
-        while (true) {
-            const question = keys[Math.floor(Math.random() * keys.length)];
-            if (alreadyShownQs.includes(question)) {
-                continue
-            }
-            setAlreadyShownQs(alreadyShownQs => [...alreadyShownQs, question])
-            setShownQuestion(question)
-            return
+        // Generate a random question
+        let question = keys[Math.floor(Math.random() * keys.length)];
+
+        // If the question already exists in the array alreadyShownQs, generate again
+        while (alreadyShownQs.includes(question)) {
+            question = keys[Math.floor(Math.random() * keys.length)];
         }
 
+        setAlreadyShownQs(alreadyShownQs => [...alreadyShownQs, question])
+        setShownQuestion(question)
     }
 
     useEffect(() => {
@@ -88,7 +98,7 @@ const InterviewHeader = ({ mobile }) => {
             }}
         />
 
-        <Button primary size="huge" onClick={() => generateRandomQuestion(securityQuestions)}>
+        <Button primary size="huge" onClick={() => generateRandomQuestion(combinedQuestions)}>
             Next
             <Icon name="random right" />
         </Button>
@@ -118,6 +128,7 @@ InterviewHeader.propTypes = {
 };
 
 const InterviewBody = () => {
+    const value = useContext(InterviewContext)
     return (
         <>
             <Segment style={{ padding: '8em 0em' }} vertical>
@@ -128,7 +139,7 @@ const InterviewBody = () => {
                                Comment and Context:
                             </Header>
                             <p style={{ fontSize: '1.33em' }}>
-                                We can give your company superpowers to do
+                                We can {value} give your company superpowers to do
                                 things that they never thought possible. Let us
                                 delight your customers and empower your needs...
                                 through pure data analytics.
@@ -165,10 +176,14 @@ const InterviewBody = () => {
 };
 
 const InterviewLayout = () => (
-    <ResponsiveContainer
-        header={<InterviewHeader />}
-        body={<InterviewBody />}
-    ></ResponsiveContainer>
+    <>
+        <InterviewContext.Provider value="test">
+            <ResponsiveContainer
+                header={<InterviewHeader />}
+                body={<InterviewBody />}
+            ></ResponsiveContainer>
+        </InterviewContext.Provider>
+    </>
 );
 
 export default InterviewLayout;
