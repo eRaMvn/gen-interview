@@ -50,7 +50,7 @@ HomeHeader.propTypes = {
 const HomeBody = () => {
     return (
         <>
-            <Segment style={{ padding: '8em 0em' }} vertical>
+            <Segment style={{ padding: '6em 0em' }} vertical>
                 <Grid container stackable verticalAlign="middle">
                     <Grid.Row>
                         <Grid.Column width={8}>
@@ -120,7 +120,7 @@ const HomeBody = () => {
                 </Grid>
             </Segment>
 
-            <Segment style={{ padding: '8em 0em' }} vertical>
+            <Segment style={{ padding: '6em 0em' }} vertical>
                 <Container text>
                     <Header as="h3" style={{ fontSize: '2em' }}>
                         Breaking The Grid, Grabs Your Attention

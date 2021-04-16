@@ -1,32 +1,22 @@
 {
     "What happen when you go to google.com?": {
-        "comment": "abc",
-        "resources": [
-            "sadas"
-        ]
+        "comment": "aaa",
+        "resources": ["sadas"]
     },
     "What are the differences between symmetric and asymmetric encryption?": {
         "comment": "abc",
-        "resources": [
-            "sadas"
-        ]
+        "resources": ["sadas"]
     },
     "How do we prevent XSS attacks?": {
         "comment": "abc",
-        "resources": [
-            "sadas"
-        ]
+        "resources": ["sadas"]
     },
     "How do we prevent CSRF attacks?": {
         "comment": "abc",
-        "resources": [
-            "sadas"
-        ]
+        "resources": ["sadas"]
     },
     "What are the differences between stateful and stateless firewalls?": {
         "comment": "abc",
-        "resources": [
-            "sadas"
-        ]
+        "resources": ["sadas"]
     }
 }
