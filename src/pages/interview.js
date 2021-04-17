@@ -8,6 +8,8 @@ import {
     Grid,
     Segment,
     Dropdown,
+    Message,
+    Popup,
 } from 'semantic-ui-react';
 import { useReactMediaRecorder } from 'react-media-recorder';
 import StopWatch from '../components/StopWatch';
@@ -32,6 +34,7 @@ const InterviewHeader = ({ mobile }) => {
         setCombinedQuestions,
         shownQuestion,
         setShownQuestion,
+        recordButtonEnabled,
     } = useContext(InterviewContext);
 
     const [dropDownState, setDropDownState] = useState([]);
@@ -48,31 +51,9 @@ const InterviewHeader = ({ mobile }) => {
         'Record Yourself',
     );
 
-    const checkIfAudioEnabled = () => {
-        navigator.getUserMedia(
-            { audio: true },
-            function (stream) {
-                console.log(stream.getAudioTracks().length);
-                if (stream.getAudioTracks().length > 0) {
-                    console.log('here');
-                    enableRecording(true);
-                }
-                return enableRecording(false);
-            },
-            function () {
-                return enableRecording(false);
-            },
-        );
-    };
-
-    const [recordButtonEnabled, enableRecording] = useState(true);
-    useEffect(() => {
-        checkIfAudioEnabled();
-    }, []);
-
     // Function to handle the recording button
     const handleRecorder = () => {
-        if (recordButtonState == 'Record Yourself') {
+        if (recordButtonState === 'Record Yourself') {
             startRecording();
             setRecordButtonState('Stop Recording...');
         } else {
@@ -139,51 +120,48 @@ const InterviewHeader = ({ mobile }) => {
                 }}
             />
 
-            <Button
-                primary
-                size="large"
-                onClick={() => generateRandomQuestion(combinedQuestions)}
-            >
-                Next
-                <Icon name="random right" />
-            </Button>
-            <Button
-                color="red"
-                size="large"
-                onClick={handleRecorder}
-                disabled={!recordButtonEnabled}
-            >
-                {recordButtonState}
-                <Icon name="record right" />
-            </Button>
-
-            <Dropdown
-                clearable
-                fluid
-                multiple
-                search
-                selection
-                options={questionTypes}
-                placeholder="Select Question Types"
-                onChange={handleDropDownChange}
-                style={{
-                    marginTop: mobile ? '0.25em' : '1.25em',
-                    marginBottom: mobile ? '0.25em' : '1.25em',
-                }}
-            />
+            <Container>
+                <Dropdown
+                    clearable
+                    fluid
+                    multiple
+                    search
+                    selection
+                    options={questionTypes}
+                    placeholder="Select Question Types"
+                    onChange={handleDropDownChange}
+                    style={{
+                        marginTop: mobile ? '0.25em' : '1.25em',
+                        marginBottom: mobile ? '0.25em' : '1.25em',
+                    }}
+                />
+            </Container>
 
             <Grid celled="internally" columns="equal" stackable>
                 <Grid.Column>
                     <StopWatch />
                 </Grid.Column>
                 <Grid.Column>
-                    <p
-                        style={{
-                            marginTop: mobile ? '0.25em' : '1.25em',
-                        }}
+                    {recordButtonEnabled ? null : (
+                        <Message error compact>
+                            Please allow access to your microphone to record
+                            yourself and reload the page!
+                        </Message>
+                    )}
+                    <Popup
+                        trigger={<audio src={mediaBlobUrl} controls />}
+                        content="After recording, download audio by clicking play and the three dots"
+                        on={['hover', 'click']}
+                    />
+                    <Button
+                        color="red"
+                        size="large"
+                        onClick={handleRecorder}
+                        disabled={!recordButtonEnabled}
                     >
-                        <audio src={mediaBlobUrl} controls />
-                    </p>
+                        {recordButtonState}
+                        <Icon name="record right" />
+                    </Button>
                 </Grid.Column>
             </Grid>
 
@@ -195,6 +173,15 @@ const InterviewHeader = ({ mobile }) => {
                 Question {alreadyShownQs.length} out of{' '}
                 {Object.keys(combinedQuestions).length}
             </p>
+
+            <Button
+                primary
+                size="large"
+                onClick={() => generateRandomQuestion(combinedQuestions)}
+            >
+                Next
+                <Icon name="random right" />
+            </Button>
 
             <Header
                 as="h2"
@@ -265,7 +252,16 @@ const InterviewBody = () => {
                             marginTop: '0.55em',
                         }}
                     >
-                        Download
+                        Download Questions Only
+                    </Button>
+
+                    <Button
+                        size="medium"
+                        style={{
+                            marginTop: '0.55em',
+                        }}
+                    >
+                        Download Questions And Resources
                     </Button>
                 </Container>
             </Segment>
@@ -282,10 +278,27 @@ const InterviewLayout = () => {
         'Try The Next Button :)',
     );
 
+    const checkIfAudioEnabled = () => {
+        navigator.getUserMedia(
+            { audio: true },
+            function (stream) {
+                if (stream.getAudioTracks().length > 0) {
+                    enableRecording(true);
+                }
+            },
+            function (e) {
+                enableRecording(false);
+            },
+        );
+    };
+
+    const [recordButtonEnabled, enableRecording] = useState(false);
+
     useEffect(() => {
         setSecurityQuestions(securityQData);
         setBehavioralQuestions(behaviorQData);
         setCombinedQuestions(behaviorQData);
+        checkIfAudioEnabled();
     }, []);
 
     const passedContext = {
@@ -297,6 +310,7 @@ const InterviewLayout = () => {
         setCombinedQuestions,
         shownQuestion,
         setShownQuestion,
+        recordButtonEnabled,
     };
 
     return (
