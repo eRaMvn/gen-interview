@@ -14,13 +14,13 @@ import {
 import { useReactMediaRecorder } from 'react-media-recorder';
 import StopWatch from '../components/StopWatch';
 import ResponsiveContainer from '../components/ResponsiveContainer';
-import securityQData from '../data/security.json';
-import behaviorQData from '../data/behavioral.json';
+import securityQData from '../data/security_questions.json';
+import behaviorQData from '../data/behavioral_questions.json';
 
 const questionTypes = [
-    { key: 'sec', value: 'sec', text: 'security' },
-    { key: 'swe', value: 'swe', text: 'software engineering' },
-    { key: 'be', value: 'be', text: 'behavioral' },
+    { key: 'sec', value: 'security_questions', text: 'security' },
+    { key: 'swe', value: 'swe_questions', text: 'software engineering' },
+    { key: 'be', value: 'behavioral_questions', text: 'behavioral' },
 ];
 
 const InterviewContext = React.createContext();
@@ -37,7 +37,6 @@ const InterviewHeader = ({ mobile }) => {
         recordButtonEnabled,
     } = useContext(InterviewContext);
 
-    const [dropDownState, setDropDownState] = useState([]);
     // An array containing the already shown question
     const [alreadyShownQs, setAlreadyShownQs] = useState([]);
 
@@ -63,13 +62,12 @@ const InterviewHeader = ({ mobile }) => {
     };
 
     const questionLookUpDict = {
-        sec: securityQuestions,
-        be: behavioralQuestions,
+        security_questions: securityQuestions,
+        behavioral_questions: behavioralQuestions,
     };
 
     // Function to handle change in the filter bar for question types
     const handleDropDownChange = (e, { value }) => {
-        setDropDownState(value);
         // Reset the list of questions when the filter changes
         setShownQuestion('Resetting question list...');
         setNextStatus(false);
@@ -120,23 +118,6 @@ const InterviewHeader = ({ mobile }) => {
                 }}
             />
 
-            <Container>
-                <Dropdown
-                    clearable
-                    fluid
-                    multiple
-                    search
-                    selection
-                    options={questionTypes}
-                    placeholder="Select Question Types"
-                    onChange={handleDropDownChange}
-                    style={{
-                        marginTop: mobile ? '0.25em' : '1.25em',
-                        marginBottom: mobile ? '0.25em' : '1.25em',
-                    }}
-                />
-            </Container>
-
             <Grid celled="internally" columns="equal" stackable>
                 <Grid.Column>
                     <StopWatch />
@@ -165,14 +146,20 @@ const InterviewHeader = ({ mobile }) => {
                 </Grid.Column>
             </Grid>
 
-            <p
+            <Dropdown
+                clearable
+                fluid
+                multiple
+                search
+                selection
+                options={questionTypes}
+                placeholder="Select Question Types"
+                onChange={handleDropDownChange}
                 style={{
                     marginTop: mobile ? '0.25em' : '1.25em',
+                    marginBottom: mobile ? '0.25em' : '1.25em',
                 }}
-            >
-                Question {alreadyShownQs.length} out of{' '}
-                {Object.keys(combinedQuestions).length}
-            </p>
+            />
 
             <Button
                 primary
@@ -182,6 +169,15 @@ const InterviewHeader = ({ mobile }) => {
                 Next
                 <Icon name="random right" />
             </Button>
+
+            <p
+                style={{
+                    marginTop: mobile ? '0.25em' : '1.25em',
+                }}
+            >
+                Question {alreadyShownQs.length} out of{' '}
+                {Object.keys(combinedQuestions).length}
+            </p>
 
             <Header
                 as="h2"
@@ -204,6 +200,13 @@ const InterviewBody = () => {
     const { nextButtonClicked, combinedQuestions, shownQuestion } = useContext(
         InterviewContext,
     );
+
+    const [questionDownloadState, setQuestionDownloadState] = useState();
+
+    // Function to handle change in the dropdown for question types
+    const handleDownload = (e, { value }) => {
+        setQuestionDownloadState(value);
+    };
 
     return (
         <>
@@ -245,24 +248,30 @@ const InterviewBody = () => {
                         fluid
                         selection
                         options={questionTypes}
+                        onChange={handleDownload}
                     />
-                    <Button
-                        size="medium"
-                        style={{
-                            marginTop: '0.55em',
-                        }}
-                    >
-                        Download Questions Only
-                    </Button>
 
-                    <Button
-                        size="medium"
-                        style={{
-                            marginTop: '0.55em',
-                        }}
-                    >
-                        Download Questions And Resources
-                    </Button>
+                    <a href={`../${questionDownloadState}.txt`}>
+                        <Button
+                            size="medium"
+                            style={{
+                                marginTop: '0.55em',
+                            }}
+                        >
+                            Download Questions Only
+                        </Button>
+                    </a>
+
+                    <a href={`../${questionDownloadState}_and_resources.txt`}>
+                        <Button
+                            size="medium"
+                            style={{
+                                marginTop: '0.55em',
+                            }}
+                        >
+                            Download Questions And Resources
+                        </Button>
+                    </a>
                 </Container>
             </Segment>
         </>
