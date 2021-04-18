@@ -10,6 +10,7 @@ import {
     Segment,
     Sidebar,
     Visibility,
+    Image,
 } from 'semantic-ui-react';
 import Footer from '../Footer';
 
@@ -69,6 +70,10 @@ const DesktopContainer = ({ header, body }) => {
                         size="large"
                     >
                         <Container>
+                            <Image
+                                src="./web_logo.png"
+                                onClick={setHomeActive}
+                            />
                             <Menu.Item
                                 as="a"
                                 active={activeMenu === '/'}

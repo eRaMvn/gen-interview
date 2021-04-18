@@ -1,7 +1,12 @@
 {
     "What happen when you go to google.com?": {
         "comment": "aaa\naaa",
-        "resources": ["sadas"]
+        "resources": ["sadas"],
+        "tags": [
+            "security_engineer",
+            "security_analyst",
+            "application_security_engineer"
+        ]
     },
     "What are the differences between symmetric and asymmetric encryption?": {
         "comment": "abc",
