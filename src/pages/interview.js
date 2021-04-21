@@ -10,6 +10,7 @@ import {
     Dropdown,
     Message,
     Popup,
+    List,
 } from 'semantic-ui-react';
 import { useReactMediaRecorder } from 'react-media-recorder';
 import StopWatch from '../components/StopWatch';
@@ -229,11 +230,21 @@ const InterviewBody = () => {
                         <Header as="h3" style={{ fontSize: '2em' }}>
                             Resources:
                         </Header>
-                        <p style={{ fontSize: '1.33em' }}>
-                            {nextButtonClicked
-                                ? combinedQuestions[shownQuestion].resources
-                                : 'Here I will provide resources to help answer the question'}
-                        </p>
+                        {/* Display the bulleted list of urls if there are any values */}
+                        {nextButtonClicked ? (
+                            <List bulleted style={{ fontSize: '1.33em' }}>
+                                {combinedQuestions[shownQuestion].resources.map(
+                                    (url) => (
+                                        <List.Item href={url}>{url}</List.Item>
+                                    ),
+                                )}
+                            </List>
+                        ) : (
+                            <p style={{ fontSize: '1.33em' }}>
+                                Here I will provide resources to help answer the
+                                question
+                            </p>
+                        )}
                     </Grid.Column>
                 </Grid>
             </Segment>

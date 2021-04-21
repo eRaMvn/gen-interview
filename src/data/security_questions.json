@@ -1,7 +1,11 @@
 {
     "What happen when you go to google.com?": {
-        "comment": "aaa\naaa",
-        "resources": ["sadas"],
+        "comment": "This question evaluates your understanding of different layers of the OSI model and the protocols involved in the process. I would start from the bottom of the stack from layer 1 to layer 7. You can briefly talk about each layer in one for two sentences. Layer 1 would typically not mentioned because it represents the physical network connection. However, you can talk about ARP, how one machine knows the network gateway, dns server, and be prepare to go into the details at each layer. For example, for layer 2, make sure you know about ARP table, MAC address; for layer 6, know the HTTPS handshake, PKI infrastructure etc...",
+        "resources": [
+            "https://github.com/alex/what-happens-when",
+            "https://medium.com/@maneesha.wijesinghe1/what-happens-when-you-type-an-url-in-the-browser-and-press-enter-bb0aa2449c1a",
+            "https://www.youtube.com/watch?v=dh406O2v_1c"
+        ],
         "tags": [
             "security_engineer",
             "security_analyst",
@@ -10,7 +14,23 @@
     },
     "What are the differences between symmetric and asymmetric encryption?": {
         "comment": "abc",
-        "resources": ["sadas"]
+        "resources": ["sadas"],
+        "tags": []
+    },
+    "When do we use asymmetric encryption?": {
+        "comment": "abc",
+        "resources": ["sadas"],
+        "tags": []
+    },
+    "When do we use symmetric encryption?": {
+        "comment": "abc",
+        "resources": ["sadas"],
+        "tags": []
+    },
+    "Describe PKI infrastructure": {
+        "comment": "",
+        "resources": [],
+        "tags": []
     },
     "How do we prevent XSS attacks?": {
         "comment": "abc",
@@ -20,8 +40,251 @@
         "comment": "abc",
         "resources": ["sadas"]
     },
-    "What are the differences between stateful and stateless firewalls?": {
+    "What is SSRF attack?": {
         "comment": "abc",
         "resources": ["sadas"]
+    },
+    "What can we do to prevent XXE?": {
+        "comment": "abc",
+        "resources": ["sadas"]
+    },
+    "Given a target company tesla.com, how do you conduct a penetration test?": {
+        "comment": "",
+        "resources": [],
+        "tags": []
+    },
+    "What are the steps in the cyber kill chain?": {
+        "comment": "abc",
+        "resources": [
+            "https://www.lockheedmartin.com/en-us/capabilities/cyber/cyber-kill-chain.html"
+        ],
+        "tags": [
+            "security_engineer",
+            "incident_responder",
+            "forensics_investigator",
+            "security_analyst"
+        ]
+    },
+    "What are the steps to respond to an incident?": {
+        "comment": "abc",
+        "resources": [""],
+        "tags": [
+            "security_engineer",
+            "incident_responder",
+            "forensics_investigator",
+            "security_analyst"
+        ]
+    },
+    "What do you think is the most important step when respond to an incident?": {
+        "comment": "abc",
+        "resources": [""],
+        "tags": [
+            "security_engineer",
+            "incident_responder",
+            "forensics_investigator",
+            "security_analyst"
+        ]
+    },
+    "What files and their locations do you look for indicator of compromise?": {
+        "comment": "abc",
+        "resources": [""],
+        "tags": [
+            "security_engineer",
+            "incident_responder",
+            "forensics_investigator",
+            "security_analyst"
+        ]
+    },
+    "How do you perform the analysis of hard drive?": {
+        "comment": "abc",
+        "resources": [""],
+        "tags": [
+            "security_engineer",
+            "incident_responder",
+            "forensics_investigator",
+            "security_analyst"
+        ]
+    },
+    "How do you perform the analysis of registry?": {
+        "comment": "abc",
+        "resources": [""],
+        "tags": [
+            "security_engineer",
+            "incident_responder",
+            "forensics_investigator",
+            "security_analyst"
+        ]
+    },
+    "How do you perform the analysis of memory?": {
+        "comment": "abc",
+        "resources": [""],
+        "tags": [
+            "security_engineer",
+            "incident_responder",
+            "forensics_investigator",
+            "security_analyst"
+        ]
+    },
+    "How do you perform threat modeling?": {
+        "comment": "",
+        "resources": [],
+        "tags": []
+    },
+    "How do you prioritize fixing security finding?": {
+        "comment": "",
+        "resources": [],
+        "tags": []
+    },
+    "Developer pushes back on fixing findings, how would you deal with that?": {
+        "comment": "",
+        "resources": [],
+        "tags": []
+    },
+    "What is setuid?": {
+        "comment": "abc",
+        "resources": ["sadas"],
+        "tags": [
+            "security_engineer",
+            "infrastructure_security_engineer",
+            "cloud_security_engineer"
+        ]
+    },
+    "What are the differences between stateful and stateless firewalls?": {
+        "comment": "abc",
+        "resources": ["sadas"],
+        "tags": [
+            "security_engineer",
+            "infrastructure_security_engineer",
+            "cloud_security_engineer"
+        ]
+    },
+    "What are the differences between security group and network firewall in AWS?": {
+        "comment": "abc",
+        "resources": ["sadas"],
+        "tags": [
+            "security_engineer",
+            "infrastructure_security_engineer",
+            "cloud_security_engineer"
+        ]
+    },
+    "Given a AWS account, what are the steps you take to secure it?": {
+        "comment": "abc",
+        "resources": ["sadas"],
+        "tags": ["security_engineer", "cloud_security_engineer"]
+    },
+    "Given a GCP project, what are the steps you take to secure it?": {
+        "comment": "abc",
+        "resources": ["sadas"],
+        "tags": ["security_engineer", "cloud_security_engineer"]
+    },
+    "What are some of the services AWS provides to clients to secure their accounts?": {
+        "comment": "",
+        "resources": [],
+        "tags": ["security_engineer", "cloud_security_engineer"]
+    },
+    "What are some of the services GCP provides to clients to secure their accounts?": {
+        "comment": "",
+        "resources": [],
+        "tags": ["security_engineer", "cloud_security_engineer"]
+    },
+    "Given a three tier web application that is hosted on EC2 and RDS, what would you recommend to secure the application in AWS?": {
+        "comment": "",
+        "resources": [],
+        "tags": ["security_engineer", "cloud_security_engineer"]
+    },
+    "Given a three tier web application that is hosted on EC2 and RDS, what would you recommend to secure the application in GCP?": {
+        "comment": "",
+        "resources": [],
+        "tags": ["security_engineer", "cloud_security_engineer"]
+    },
+    "How do you secure API endpoints?": {
+        "comment": "",
+        "resources": [],
+        "tags": []
+    },
+    "How do you secure PII data?": {
+        "comment": "",
+        "resources": [],
+        "tags": []
+    },
+    "What can we do to secure database?": {
+        "comment": "",
+        "resources": [],
+        "tags": []
+    },
+    "How do you design a vulnerability management service in AWS/GCP at scale?": {
+        "comment": "",
+        "resources": [],
+        "tags": []
+    },
+    "How do you detect vulnerability and misconfigurations in AWS/GCP at scale?": {
+        "comment": "",
+        "resources": [],
+        "tags": []
+    },
+    "How do you remediate vulnerability and misconfigurations in AWS/GCP at scale?": {
+        "comment": "",
+        "resources": [],
+        "tags": []
+    },
+    "What are the differences between IAM role and IAM group in AWS?": {
+        "comment": "",
+        "resources": [],
+        "tags": []
+    },
+    "What are some of the best practices to secure IAM?": {
+        "comment": "",
+        "resources": [],
+        "tags": []
+    },
+    "What are some of the ways to manage EC2 instances?": {
+        "comment": "",
+        "resources": [],
+        "tags": []
+    },
+    "How do we execute commands in EC2 instances in a secure way?": {
+        "comment": "",
+        "resources": [],
+        "tags": []
+    },
+    "How do we restrict access to the production environment?": {
+        "comment": "",
+        "resources": [],
+        "tags": []
+    },
+    "How do we secure our application?": {
+        "comment": "",
+        "resources": [],
+        "tags": []
+    },
+    "A developer comes to you with question on how to secure secret token used in application. What would you recommend?": {
+        "comment": "",
+        "resources": [],
+        "tags": []
+    },
+    "How do we secure microservices?": {
+        "comment": "",
+        "resources": [],
+        "tags": []
+    },
+    "How do we secure Kubernetes, EKS, ECS?": {
+        "comment": "",
+        "resources": [],
+        "tags": []
+    },
+    "How do you design a token generator service used in MFA?": {
+        "comment": "",
+        "resources": ["security_engineer"],
+        "tags": ["security_engineer"]
+    },
+    "How do you design a key management service similar to AWS KMS?": {
+        "comment": "",
+        "resources": ["security_engineer"],
+        "tags": ["security_engineer"]
+    },
+    "How do you design a secret management service similar to AWS Secret Manager/HashiCorp Vault?": {
+        "comment": "",
+        "resources": ["security_engineer"],
+        "tags": ["security_engineer"]
     }
 }

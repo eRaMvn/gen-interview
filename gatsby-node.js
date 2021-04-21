@@ -40,8 +40,12 @@ exports.onPreInit = () => {
                 questionAndResourceStream.write(`Question: ${v}\n`);
                 questionAndResourceStream.write(`Comments:\n`);
                 questionAndResourceStream.write(`${jsonFile[v].comment}\n`);
+                questionAndResourceStream.write(`\n`);
                 questionAndResourceStream.write(`Resources:\n`);
-                questionAndResourceStream.write(`${jsonFile[v].resources}\n`);
+                jsonFile[v].resources.map((url) => {
+                    questionAndResourceStream.write(`${url}\n`);
+                });
+                questionAndResourceStream.write(`\n`);
                 questionAndResourceStream.write(
                     `---------------------------------------\n`,
                 );
