@@ -34,19 +34,23 @@
     },
     "How do we prevent XSS attacks?": {
         "comment": "abc",
-        "resources": ["sadas"]
+        "resources": ["sadas"],
+        "tags": []
     },
     "How do we prevent CSRF attacks?": {
         "comment": "abc",
-        "resources": ["sadas"]
+        "resources": ["sadas"],
+        "tags": []
     },
     "What is SSRF attack?": {
         "comment": "abc",
-        "resources": ["sadas"]
+        "resources": ["sadas"],
+        "tags": []
     },
     "What can we do to prevent XXE?": {
         "comment": "abc",
-        "resources": ["sadas"]
+        "resources": ["sadas"],
+        "tags": []
     },
     "Given a target company tesla.com, how do you conduct a penetration test?": {
         "comment": "",
@@ -143,11 +147,7 @@
     "What is setuid?": {
         "comment": "abc",
         "resources": ["sadas"],
-        "tags": [
-            "security_engineer",
-            "infrastructure_security_engineer",
-            "cloud_security_engineer"
-        ]
+        "tags": ["security_engineer", "infrastructure_security_engineer"]
     },
     "What are the differences between stateful and stateless firewalls?": {
         "comment": "abc",

@@ -17,22 +17,17 @@ import StopWatch from '../components/StopWatch';
 import ResponsiveContainer from '../components/ResponsiveContainer';
 import securityQData from '../data/security_questions.json';
 import behaviorQData from '../data/behavioral_questions.json';
-
-const questionTypes = [
-    { key: 'sec', value: 'security_questions', text: 'security' },
-    { key: 'swe', value: 'swe_questions', text: 'software engineering' },
-    { key: 'be', value: 'behavioral_questions', text: 'behavioral' },
-];
+import { getQuestionByTags, setDropDownValues } from '../helper/common';
 
 const InterviewContext = React.createContext();
 
 const InterviewHeader = ({ mobile }) => {
     const {
         setNextStatus,
-        securityQuestions,
-        behavioralQuestions,
+        allQuestions,
         combinedQuestions,
         setCombinedQuestions,
+        questionTypes,
         shownQuestion,
         setShownQuestion,
         recordButtonEnabled,
@@ -62,43 +57,38 @@ const InterviewHeader = ({ mobile }) => {
         }
     };
 
-    const questionLookUpDict = {
-        security_questions: securityQuestions,
-        behavioral_questions: behavioralQuestions,
-    };
-
     // Function to handle change in the filter bar for question types
     const handleDropDownChange = (e, { value }) => {
         // Reset the list of questions when the filter changes
         setShownQuestion('Resetting question list...');
         setNextStatus(false);
 
-        let newQuestionSet = {};
+        let newQuestionList = [];
         for (let selection of value) {
-            newQuestionSet = {
-                ...newQuestionSet,
-                ...questionLookUpDict[selection],
-            };
+            newQuestionList = [...newQuestionList, ...allQuestions[selection]];
         }
-        setCombinedQuestions(newQuestionSet);
+        setCombinedQuestions(newQuestionList);
         setAlreadyShownQs([]);
     };
 
-    const generateRandomQuestion = (questionDict) => {
-        const keys = Object.keys(questionDict);
+    const generateRandomQuestion = (questionList) => {
         // If all questions looped through, restart again
-        if (alreadyShownQs.length === keys.length) {
+        if (alreadyShownQs.length === questionList.length) {
             setAlreadyShownQs([]);
-            setShownQuestion(keys[Math.floor(Math.random() * keys.length)]);
+            setShownQuestion(
+                questionList[Math.floor(Math.random() * questionList.length)],
+            );
             return;
         }
 
         // Generate a random question
-        let question = keys[Math.floor(Math.random() * keys.length)];
+        let question =
+            questionList[Math.floor(Math.random() * questionList.length)];
 
         // If the question already exists in the array alreadyShownQs, generate again
         while (alreadyShownQs.includes(question)) {
-            question = keys[Math.floor(Math.random() * keys.length)];
+            question =
+                questionList[Math.floor(Math.random() * questionList.length)];
         }
 
         setAlreadyShownQs((alreadyShownQs) => [...alreadyShownQs, question]);
@@ -177,7 +167,7 @@ const InterviewHeader = ({ mobile }) => {
                 }}
             >
                 Question {alreadyShownQs.length} out of{' '}
-                {Object.keys(combinedQuestions).length}
+                {combinedQuestions.length}
             </p>
 
             <Header
@@ -198,9 +188,12 @@ InterviewHeader.propTypes = {
 };
 
 const InterviewBody = () => {
-    const { nextButtonClicked, combinedQuestions, shownQuestion } = useContext(
-        InterviewContext,
-    );
+    const {
+        nextButtonClicked,
+        allQuestionsData,
+        questionTypes,
+        shownQuestion,
+    } = useContext(InterviewContext);
 
     const [questionDownloadState, setQuestionDownloadState] = useState();
 
@@ -224,7 +217,7 @@ const InterviewBody = () => {
                             }}
                         >
                             {nextButtonClicked
-                                ? combinedQuestions[shownQuestion].comment
+                                ? allQuestionsData[shownQuestion].comment
                                 : 'Here I will provide some comments based on my experience answering that question'}
                         </p>
                         <Header as="h3" style={{ fontSize: '2em' }}>
@@ -233,9 +226,11 @@ const InterviewBody = () => {
                         {/* Display the bulleted list of urls if there are any values */}
                         {nextButtonClicked ? (
                             <List bulleted style={{ fontSize: '1.33em' }}>
-                                {combinedQuestions[shownQuestion].resources.map(
+                                {allQuestionsData[shownQuestion].resources.map(
                                     (url) => (
-                                        <List.Item href={url}>{url}</List.Item>
+                                        <List.Item key={url} href={url}>
+                                            {url}
+                                        </List.Item>
                                     ),
                                 )}
                             </List>
@@ -262,7 +257,7 @@ const InterviewBody = () => {
                         onChange={handleDownload}
                     />
 
-                    <a href={`../${questionDownloadState}.txt`}>
+                    <a href={`../${questionDownloadState}_questions.txt`}>
                         <Button
                             size="medium"
                             style={{
@@ -273,7 +268,9 @@ const InterviewBody = () => {
                         </Button>
                     </a>
 
-                    <a href={`../${questionDownloadState}_and_resources.txt`}>
+                    <a
+                        href={`../${questionDownloadState}_questions_and_resources.txt`}
+                    >
                         <Button
                             size="medium"
                             style={{
@@ -291,9 +288,16 @@ const InterviewBody = () => {
 
 const InterviewLayout = () => {
     const [nextButtonClicked, setNextStatus] = useState(false);
-    const [securityQuestions, setSecurityQuestions] = useState({});
-    const [behavioralQuestions, setBehavioralQuestions] = useState({});
-    const [combinedQuestions, setCombinedQuestions] = useState({});
+    // allQuestionsData is a big objects containing all values in json files in /src/data
+    // We use this look up comment and resources
+    const [allQuestionsData, setAllQuestionsData] = useState({});
+    // allQuestions are all questions under /src/data by roles
+    const [allQuestions, setAllQuestions] = useState({});
+    // combinedQuestions are the questions combined from the dropdown list
+    const [combinedQuestions, setCombinedQuestions] = useState([]);
+    // questionTypes are the types of questions shown in the dropdown list
+    const [questionTypes, setQuestionTypes] = useState([]);
+
     const [shownQuestion, setShownQuestion] = useState(
         'Try The Next Button :)',
     );
@@ -314,20 +318,42 @@ const InterviewLayout = () => {
 
     const [recordButtonEnabled, enableRecording] = useState(false);
 
+    // Add a new set of data here
+    const loadQuestions = () => {
+        const allSecurityQs = getQuestionByTags(securityQData, 'all_security');
+
+        const allBehavioralQs = getQuestionByTags(
+            behaviorQData,
+            'all_behavioral',
+        );
+
+        return {
+            ...allSecurityQs,
+            ...allBehavioralQs,
+        };
+    };
+
     useEffect(() => {
-        setSecurityQuestions(securityQData);
-        setBehavioralQuestions(behaviorQData);
-        setCombinedQuestions(behaviorQData);
+        // Add new set of data here
+        setAllQuestionsData({
+            ...securityQData,
+            ...behaviorQData,
+        });
+        const allLoadedQuestions = loadQuestions();
+        setAllQuestions(allLoadedQuestions);
+        setQuestionTypes(setDropDownValues(allLoadedQuestions));
+        setCombinedQuestions(allLoadedQuestions['all_behavioral']);
         checkIfAudioEnabled();
     }, []);
 
     const passedContext = {
         nextButtonClicked,
         setNextStatus,
-        securityQuestions,
-        behavioralQuestions,
+        allQuestionsData,
+        allQuestions,
         combinedQuestions,
         setCombinedQuestions,
+        questionTypes,
         shownQuestion,
         setShownQuestion,
         recordButtonEnabled,
