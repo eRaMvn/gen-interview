@@ -1,6 +1,11 @@
-# `gen-interview`
+       ____ _____ _   _      ___ _   _ _____ _____ ______     _____ _______        __
+      / ___| ____| \ | |    |_ _| \ | |_   _| ____|  _ \ \   / /_ _| ____\ \      / /
+     | |  _|  _| |  \| |_____| ||  \| | | | |  _| | |_) \ \ / / | ||  _|  \ \ /\ / /
+     | |_| | |___| |\  |_____| || |\  | | | | |___|  _ < \ V /  | || |___  \ V  V /
+      \____|_____|_| \_|    |___|_| \_| |_| |_____|_| \_\ \_/  |___|_____|  \_/\_/
 
-gen-interview is a web application to help job seekers practice their interview skills by generating practical real world interview questions by topics and roles
+
+`gen-interview` is a web application to help job seekers practice their interview skills by generating practical real world interview questions by topics and roles
 
 The application can be accessed by going to [interviewpractice.info](https://interviewpractice.info)
 

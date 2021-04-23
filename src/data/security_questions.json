@@ -12,10 +12,35 @@
             "application_security_engineer"
         ]
     },
-    "What are the differences between symmetric and asymmetric encryption?": {
+    "What are the best practices to store passwords in database": {
         "comment": "abc",
         "resources": ["sadas"],
-        "tags": []
+        "tags": [
+            "security_engineer",
+            "application_security_engineer",
+            "security_analyst"
+        ]
+    },
+    "When do we use encryption vs hashing?": {
+        "comment": "abc",
+        "resources": ["sadas"],
+        "tags": [
+            "https://en.wikipedia.org/wiki/Cryptographic_hash_function",
+            "https://www.youtube.com/watch?v=b4b8ktEV4Bg"
+        ]
+    },
+    "What are the differences between symmetric and asymmetric encryption?": {
+        "comment": "We need to clearly distinguish the differences between the two. The most important difference is symmetric key uses one key for both encryption and decryption while asymmetric encrypt requires a private key and public key. For encryption, we use public key to encrypt the data and use private key to decrypt it. We share our public to whoever needs to share the data with us. There are more to the use of asymmetric encryption. Asymmetric encryption is slower than symmetric encryption",
+        "resources": [
+            "https://www.youtube.com/watch?v=AQDCe585Lnc",
+            "https://www.youtube.com/watch?v=PivKSmRe_68",
+            "https://www.cybrary.it/video/symmetric-encryption-and-asymmetric-encryption/"
+        ],
+        "tags": [
+            "security_engineer",
+            "application_security_engineer",
+            "security_analyst"
+        ]
     },
     "When do we use asymmetric encryption?": {
         "comment": "abc",
