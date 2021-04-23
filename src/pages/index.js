@@ -91,7 +91,15 @@ const HomeBody = () => {
                                 interviews. Even though the names of the
                                 companies that asked these questions are not
                                 mentioned, we believe the questions can help you
-                                prepare and avoid surprises
+                                prepare and avoid surprises.{' '}
+                            </p>
+                            <p style={{ fontSize: '1.33em' }}>
+                                There are comments and resources provided for
+                                each question that help provide the perspective
+                                on how to answer a particular question. Right
+                                now, it is based on the experience of one
+                                individual, and it is not guaranteed that
+                                following comment would bring success
                             </p>
                         </Grid.Column>
                         <Grid.Column floated="right" width={6}>

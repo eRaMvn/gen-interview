@@ -25,7 +25,10 @@ For example:
 
 ```json
 "What happen when you go to google.com?": {
-  "comment": "This question evaluates your understanding of different layers of the OSI model and the protocols involved in the process. I would start from the bottom of the stack from layer 1 to layer 7. You can briefly talk about each layer in one for two sentences. Layer 1 would typically not mentioned because it represents the physical network connection. However, you can talk about ARP, how one machine knows the network gateway, dns server, and be prepare to go into the details at each layer. For example, for layer 2, make sure you know about ARP table, MAC address; for layer 6, know the HTTPS handshake, etc...",
+  "comment": [
+    "This question evaluates your understanding of different layers of the OSI model and the protocols involved in the process. I would start from the bottom of the stack from layer 1 to layer 7. You can briefly talk about each layer in one for two sentences. Layer 1 would typically not mentioned because it represents the physical network connection. However, you can talk about ARP, how one machine knows the network gateway, dns server, and be prepare to go into the details at each layer. For example, for layer 2, make sure you know about ARP table, MAC address; for layer 6, know the HTTPS handshake, etc...",
+    "Comment 2",
+  ],
   "resources": [
     "https://github.com/alex/what-happens-when",
     "https://medium.com/@maneesha.wijesinghe1/what-happens-when-you-type-an-url-in-the-browser-and-press-enter-bb0aa2449c1a",

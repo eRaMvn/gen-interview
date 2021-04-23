@@ -170,15 +170,23 @@ const InterviewHeader = ({ mobile }) => {
                 {combinedQuestions.length}
             </p>
 
-            <Header
-                as="h2"
-                content={shownQuestion}
+            <Segment
                 inverted
                 style={{
-                    fontSize: mobile ? '1em' : '1.5em',
-                    fontWeight: 'normal',
+                    overflow: 'auto',
+                    maxHeight: 100,
                 }}
-            />
+            >
+                <Header
+                    as="h2"
+                    content={shownQuestion}
+                    inverted
+                    style={{
+                        fontSize: mobile ? '1em' : '1.5em',
+                        fontWeight: 'normal',
+                    }}
+                />
+            </Segment>
         </Container>
     );
 };
@@ -210,16 +218,25 @@ const InterviewBody = () => {
                         <Header as="h3" style={{ fontSize: '2em' }}>
                             Comment and Context:
                         </Header>
-                        <p
+                        <Segment
                             style={{
-                                fontSize: '1.33em',
-                                whiteSpace: 'pre-wrap',
+                                overflow: 'auto',
+                                maxHeight: 200,
+                                minHeight: 200,
                             }}
                         >
-                            {nextButtonClicked
-                                ? allQuestionsData[shownQuestion].comment
-                                : 'Here I will provide some comments based on my experience answering that question'}
-                        </p>
+                            <p
+                                style={{
+                                    fontSize: '1.33em',
+                                    whiteSpace: 'pre-wrap',
+                                }}
+                            >
+                                {nextButtonClicked
+                                    ? allQuestionsData[shownQuestion].comment[0]
+                                    : 'Here I will provide some comments based on my experience answering that question'}
+                            </p>
+                        </Segment>
+
                         <Header as="h3" style={{ fontSize: '2em' }}>
                             Resources:
                         </Header>

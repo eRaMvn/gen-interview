@@ -1,11 +1,11 @@
 {
     "Give me an example of a time you faced a conflict while working on a team. How did you handle that?": {
-        "comment": "abc",
+        "comment": ["abc"],
         "resources": ["sadas"],
         "tags": []
     },
     "Tell me about a time when you face challenges working with another team. How did you handle that?": {
-        "comment": "abc",
+        "comment": ["abc"],
         "resources": ["sadas"],
         "tags": []
     }
