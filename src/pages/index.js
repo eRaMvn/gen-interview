@@ -99,7 +99,9 @@ const HomeBody = () => {
                                 on how to answer a particular question. Right
                                 now, it is based on the experience of one
                                 individual, and it is not guaranteed that
-                                following comment would bring success
+                                following comments and resources would bring
+                                success. I have been to many interviews, so I
+                                just want to help you.
                             </p>
                         </Grid.Column>
                         <Grid.Column floated="right" width={6}>

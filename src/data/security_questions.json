@@ -15,8 +15,13 @@
         ]
     },
     "What are the best practices to store passwords in database?": {
-        "comment": ["abc"],
-        "resources": ["sadas"],
+        "comment": [
+            "What they are looking for here is whether the password is hashed or not. What type of hashing algorithm is being used to hash password? Are you using salt? How are the salt stored? Should the salt store with the password? How to generate random salt?"
+        ],
+        "resources": [
+            "https://www.geeksforgeeks.org/store-password-database/",
+            "https://stackoverflow.com/questions/1054022/best-way-to-store-password-in-database"
+        ],
         "tags": [
             "security_engineer",
             "application_security_engineer",
@@ -31,7 +36,11 @@
             "https://en.wikipedia.org/wiki/Cryptographic_hash_function",
             "https://www.youtube.com/watch?v=b4b8ktEV4Bg"
         ],
-        "tags": ["security_engineer", "security_analyst", ""]
+        "tags": [
+            "security_engineer",
+            "security_analyst",
+            "application_security_engineer"
+        ]
     },
     "What are the differences between symmetric and asymmetric encryption?": {
         "comment": [
@@ -50,7 +59,7 @@
     },
     "When do we use asymmetric encryption?": {
         "comment": [
-            "Some points that are worth mentioned here are:\n-Asymmetric encryption plays an important role in the PKI infrastructure to verify and validate the identity of the principals involved\nIt is used for the encryption of the symmetric key used in HTTPS protocol or for general encryption like email exchange if we decide to use it for encryption"
+            "Some points that are worth mentioned here are:\n-Asymmetric encryption plays an important role in the PKI infrastructure to verify and validate the identity of the principals involved\n-It is used for the encryption of the symmetric key used in HTTPS protocol or for general encryption like email exchange if we decide to use it for encryption"
         ],
         "resources": ["https://www.youtube.com/watch?v=AQDCe585Lnc"],
         "tags": [
@@ -60,42 +69,88 @@
         ]
     },
     "When do we use symmetric encryption?": {
-        "comment": ["abc"],
-        "resources": ["sadas"],
-        "tags": []
+        "comment": [
+            "We use symmetric encryption because it offers faster speed to encrypt and decrypt contents. However, it only requires the same key to encrypt and decrypt, and that's why we need to mention it is used in conjunction with asymmetric encryption to take advantage of the ability to verify and validate the parties in the communication and exchange secrets safely"
+        ],
+        "resources": ["https://www.youtube.com/watch?v=Z3FwixsBE94"],
+        "tags": [
+            "security_engineer",
+            "security_analyst",
+            "application_security_engineer"
+        ]
     },
     "Describe PKI infrastructure": {
-        "comment": [""],
-        "resources": [],
-        "tags": []
+        "comment": [
+            "This open ended question tests your understanding of different components of PKI infrastructure such as Certificate Authority (CA), asymmetric encryption, how browsers can trust a website, the process to validate the identity of a website, how the certificate is generated, what is certificate signing request, how browser knows to not trust a website, etc. Those are some of the questions to consider when answering this question"
+        ],
+        "resources": ["https://www.youtube.com/watch?v=t0F7fe5Alwg"],
+        "tags": [
+            "security_engineer",
+            "security_analyst",
+            "application_security_engineer"
+        ]
     },
     "How do we prevent XSS attacks?": {
-        "comment": ["abc"],
-        "resources": ["sadas"],
-        "tags": []
+        "comment": [
+            "One of the most common questions in interview. You should be familiar with different types of XSS (as references in Resources). You should know how to do basic XSS attacks, and how to mitigate them (with content security policy, cookie settings). Portswigger Web Academy is especially helpful"
+        ],
+        "resources": [
+            "https://www.hacksplaining.com/exercises/xss-stored",
+            "https://www.hacksplaining.com/exercises/xss-reflected",
+            "https://portswigger.net/web-security/cross-site-scripting",
+            "https://www.youtube.com/watch?v=JbfNWg6JS4U",
+            "https://www.youtube.com/watch?v=mr230uotw-Y",
+            "https://www.youtube.com/watch?v=pocsv39pNXA&t=1754s"
+        ],
+        "tags": [
+            "security_engineer",
+            "application_security_engineer",
+            "cloud_security_engineer"
+        ]
     },
     "How do we prevent CSRF attacks?": {
-        "comment": ["abc"],
-        "resources": ["sadas"],
-        "tags": []
+        "comment": [
+            "As one of the OWASP Top 10, you should be familiar with this attack and understand the difference between this attack and XSS. The links under Resources can help with your understanding with the subject"
+        ],
+        "resources": [
+            "https://www.hacksplaining.com/exercises/csrf",
+            "https://portswigger.net/web-security/csrf",
+            "https://pentesterlab.com/exercises/csrf/course"
+        ],
+        "tags": ["security_engineer", "application_security_engineer"]
     },
     "What is SSRF attack?": {
-        "comment": ["abc"],
-        "resources": ["sadas"],
-        "tags": []
+        "comment": [
+            "Although rarely asked, this attack has become more and more common. Having an understanding of it would help, and there is no better place to learn it than PortSwigger Academy"
+        ],
+        "resources": [
+            "https://portswigger.net/web-security/ssrf",
+            "https://pentesterlab.com/exercises/ffmpeg_ssrf/course",
+            "https://pentesterlab.com/exercises/pdf_ssrf/course"
+        ],
+        "tags": ["security_engineer", "application_security_engineer"]
     },
     "What can we do to prevent XXE?": {
-        "comment": ["abc"],
-        "resources": ["sadas"],
-        "tags": []
+        "comment": [
+            "With JSON being used so common, XML is being replaced, but it is still necessary to have an understand how services communicate with XML and attack vectors"
+        ],
+        "resources": [
+            "https://www.hacksplaining.com/exercises/xml-external-entities",
+            "https://portswigger.net/web-security/xxe"
+        ],
+        "tags": ["security_engineer", "application_security_engineer"]
     },
     "Given a target company tesla.com, how do you conduct a penetration test?": {
-        "comment": [""],
-        "resources": [],
-        "tags": []
+        "comment": [
+            "There are a lot of great resources on this, but I would recommend the one under the Resource section. Basically, the idea is to have the scope for the work, what targets are allowed and what are not allowed. Assuming we have consent to do pentest, we would want to do reconnaissance to try to find the vulnerable targets (domains, ips) from the current landscape of the organization. There are a lot of useful techniques to identify and find interesting domains and ips as specified in the video. Once, we have the list of what we need to test, we can try OWASP Top 10 attacks, document the process on how we compromise the application, note the severity and how we can remediate the findings."
+        ],
+        "resources": ["https://www.youtube.com/watch?v=p4JgIu1mceI"],
+        "tags": ["security_engineer", "application_security_engineer"]
     },
     "What are the steps in the cyber kill chain?": {
-        "comment": ["abc"],
+        "comment": [
+            "The cyber kill chain are steps/phases that demonstrate what the adversaries must achieve to complete the objective. A sample is given by Lockheed Martin, and earlier the phase that we could stop the hackers from, the better it would be."
+        ],
         "resources": [
             "https://www.lockheedmartin.com/en-us/capabilities/cyber/cyber-kill-chain.html"
         ],
@@ -107,8 +162,13 @@
         ]
     },
     "What are the steps to respond to an incident?": {
-        "comment": ["abc"],
-        "resources": [""],
+        "comment": [
+            "We can emphasize it is important to map out all of the steps to take during the incident before incident happens. The reason for that is so the team will be prepared and know exactly what steps to follow. Some basic steps would be:\n-Verify if it is actually an incident\n-Determine the scope of the incident - Triaging and Analysis\n-Contain the incident by isolating the infected machines\n-Restore the infected machine through backup\n-Conduct analysis to identify the root causes of the problem - Lesson learned\nAn example of the steps is shown under the Resource section"
+        ],
+        "resources": [
+            "https://www.exabeam.com/incident-response/steps/",
+            "https://digitalguardian.com/blog/five-steps-incident-response"
+        ],
         "tags": [
             "security_engineer",
             "incident_responder",
@@ -117,8 +177,13 @@
         ]
     },
     "What do you think is the most important step when respond to an incident?": {
-        "comment": ["abc"],
-        "resources": [""],
+        "comment": [
+            "This answer is totally subjective, and it varies based on your experience as well. In my opinion, root cause analysis is the most important step as it will help the team know exactly what causes the issue. If we don't know the root cause of the problem, the problem will keep happening. Hence, it is important to have a thorough understanding"
+        ],
+        "resources": [
+            "https://www.exabeam.com/incident-response/steps/",
+            "https://digitalguardian.com/blog/five-steps-incident-response"
+        ],
         "tags": [
             "security_engineer",
             "incident_responder",
