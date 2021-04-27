@@ -246,11 +246,17 @@ const InterviewBody = () => {
                         {nextButtonClicked ? (
                             <List bulleted style={{ fontSize: '1.33em' }}>
                                 {allQuestionsData[shownQuestion].resources.map(
-                                    (url) => (
-                                        <List.Item key={url} href={url}>
-                                            {url}
-                                        </List.Item>
-                                    ),
+                                    (url) => {
+                                        return url === 'N/A' ? (
+                                            <List.Item key={url}>
+                                                {url}
+                                            </List.Item>
+                                        ) : (
+                                            <List.Item key={url} href={url}>
+                                                {url}
+                                            </List.Item>
+                                        );
+                                    },
                                 )}
                             </List>
                         ) : (

@@ -1,12 +1,21 @@
 {
     "Give me an example of a time you faced a conflict while working on a team. How did you handle that?": {
-        "comment": ["abc"],
-        "resources": ["sadas"],
+        "comment": ["No comment"],
+        "resources": ["N/A"],
         "tags": []
     },
     "Tell me about a time when you face challenges working with another team. How did you handle that?": {
-        "comment": ["abc"],
-        "resources": ["sadas"],
+        "comment": ["No comment"],
+        "resources": [
+            "https://www.thebalancecareers.com/job-interview-question-how-did-you-handle-a-challenge-2061243"
+        ],
+        "tags": []
+    },
+    "Give an example of a goal you reached and tell me how you achieved it?": {
+        "comment": ["No comment"],
+        "resources": [
+            "https://www.thebalancecareers.com/job-interview-question-how-will-you-achieve-your-goals-2061245"
+        ],
         "tags": []
     }
 }

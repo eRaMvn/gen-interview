@@ -192,8 +192,8 @@
         ]
     },
     "What files and their locations do you look for indicator of compromise?": {
-        "comment": ["abc"],
-        "resources": [""],
+        "comment": ["Pending contribution..."],
+        "resources": ["N/A"],
         "tags": [
             "security_engineer",
             "incident_responder",
@@ -202,8 +202,8 @@
         ]
     },
     "How do you perform the analysis of hard drive?": {
-        "comment": ["abc"],
-        "resources": [""],
+        "comment": ["Pending contribution..."],
+        "resources": ["N/A"],
         "tags": [
             "security_engineer",
             "incident_responder",
@@ -212,8 +212,8 @@
         ]
     },
     "How do you perform the analysis of registry?": {
-        "comment": ["abc"],
-        "resources": [""],
+        "comment": ["Pending contribution..."],
+        "resources": ["N/A"],
         "tags": [
             "security_engineer",
             "incident_responder",
@@ -222,8 +222,8 @@
         ]
     },
     "How do you perform the analysis of memory?": {
-        "comment": ["abc"],
-        "resources": [""],
+        "comment": ["Pending contribution..."],
+        "resources": ["N/A"],
         "tags": [
             "security_engineer",
             "incident_responder",
@@ -232,28 +232,64 @@
         ]
     },
     "How do you perform threat modeling?": {
-        "comment": [""],
-        "resources": [],
-        "tags": []
+        "comment": [
+            "An open ended question. Some example questions to know would be:\n-What is the tech stack?\n-Architecture review and deep dive into each layer\n-How services talk each other (whether encryption enabled, how this service authenticates other services)?\n-What data is being stored and how? How data is being transmitted? Who has access to those data?\nThere are so many questions that we can ask, and the purpose of the threat modeling is to identifying ways/vectors someone can infiltrate the application/system to get to the crown jewels"
+        ],
+        "resources": [
+            "https://youtu.be/VbW-X0j35gw",
+            "https://www.youtube.com/watch?v=KGy_KCRUGd4",
+            "https://www.youtube.com/watch?v=pXr75ufG1uM",
+            "https://blog.eccouncil.org/dread-threat-modeling-an-introduction-to-qualitative-and-quantitative-risk-analysis/"
+        ],
+        "tags": [
+            "security_engineer",
+            "application_security_engineer",
+            "infrastructure_security_engineer"
+        ]
     },
-    "How do you prioritize fixing security finding?": {
-        "comment": [""],
-        "resources": [],
-        "tags": []
+    "How do you prioritize tasks?": {
+        "comment": [
+            "Ideally, you want to prioritize the task that can bring the most value to your team/organization.\n-When it comes to fixing vulnerabilities, you want to prioritize remediating high severity findings. However, that is not always easy as you have to work with other teams to fix that, and they have their priorities as well. It is all about communicating the importance and the value the fix would be.\n-When it comes to your own tasks, if there are multiple conflicting priorities, you have to communicate to your boss what you are working and understand what he/she wants to focus on"
+        ],
+        "resources": ["N/A"],
+        "tags": [
+            "security_analyst",
+            "security_engineer",
+            "application_security_engineer",
+            "cloud_security_engineer",
+            "infrastructure_security_engineer",
+            "incident_responder",
+            "forensics_investigator"
+        ]
     },
     "Developer pushes back on fixing findings, how would you deal with that?": {
-        "comment": [""],
-        "resources": [],
-        "tags": []
+        "comment": [
+            "When it comes to fixing vulnerabilities, you want to prioritize remediating high severity findings. However, that is not always easy as you have to work with other teams to fix that, and they have their priorities as well. It is all about communicating the importance and the value the fix would be. We can also escalate if needed"
+        ],
+        "resources": ["N/A"],
+        "tags": [
+            "security_engineer",
+            "application_security_engineer",
+            "infrastructure_security_engineer"
+        ]
     },
     "What is setuid?": {
-        "comment": ["abc"],
-        "resources": ["sadas"],
+        "comment": [
+            "This is clearly explained on other websites. What we want to focus on is why it is being used and how someone can exploit it."
+        ],
+        "resources": [
+            "https://www.computerhope.com/jargon/s/setuid.htm#:~:text=Setuid%2C%20which%20stands%20for%20set,certain%20programs%20with%20escalated%20privileges.",
+            "https://man7.org/linux/man-pages/man2/setuid.2.html"
+        ],
         "tags": ["security_engineer", "infrastructure_security_engineer"]
     },
     "What are the differences between stateful and stateless firewalls?": {
-        "comment": ["abc"],
-        "resources": ["sadas"],
+        "comment": [
+            "The thing to remember here is stateless firewall does not keep track of the connection session, meaning we would have to create both inbound and outbound rules while stateful firewall remembers what are coming in and out of networks. We only need to configure the rules in one direction for stateful"
+        ],
+        "resources": [
+            "https://www.redhat.com/en/topics/cloud-native-apps/stateful-vs-stateless"
+        ],
         "tags": [
             "security_engineer",
             "infrastructure_security_engineer",
@@ -272,32 +308,56 @@
     "Given a AWS account, what are the steps you take to secure it?": {
         "comment": ["abc"],
         "resources": ["sadas"],
-        "tags": ["security_engineer", "cloud_security_engineer"]
+        "tags": [
+            "security_engineer",
+            "cloud_security_engineer",
+            "infrastructure_security_engineer"
+        ]
     },
     "Given a GCP project, what are the steps you take to secure it?": {
         "comment": ["abc"],
         "resources": ["sadas"],
-        "tags": ["security_engineer", "cloud_security_engineer"]
+        "tags": [
+            "security_engineer",
+            "cloud_security_engineer",
+            "infrastructure_security_engineer"
+        ]
     },
     "What are some of the services AWS provides to clients to secure their accounts?": {
         "comment": [""],
         "resources": [],
-        "tags": ["security_engineer", "cloud_security_engineer"]
+        "tags": [
+            "security_engineer",
+            "cloud_security_engineer",
+            "infrastructure_security_engineer"
+        ]
     },
     "What are some of the services GCP provides to clients to secure their accounts?": {
         "comment": [""],
         "resources": [],
-        "tags": ["security_engineer", "cloud_security_engineer"]
+        "tags": [
+            "security_engineer",
+            "cloud_security_engineer",
+            "infrastructure_security_engineer"
+        ]
     },
     "Given a three tier web application that is hosted on EC2 and RDS, what would you recommend to secure the application in AWS?": {
         "comment": [""],
         "resources": [],
-        "tags": ["security_engineer", "cloud_security_engineer"]
+        "tags": [
+            "security_engineer",
+            "cloud_security_engineer",
+            "infrastructure_security_engineer"
+        ]
     },
     "Given a three tier web application that is hosted on EC2 and RDS, what would you recommend to secure the application in GCP?": {
         "comment": [""],
         "resources": [],
-        "tags": ["security_engineer", "cloud_security_engineer"]
+        "tags": [
+            "security_engineer",
+            "cloud_security_engineer",
+            "infrastructure_security_engineer"
+        ]
     },
     "How do you secure API endpoints?": {
         "comment": [""],
@@ -346,47 +406,77 @@
     },
     "How do we execute commands in EC2 instances in a secure way?": {
         "comment": [""],
-        "resources": [],
-        "tags": []
+        "resources": ["https://www.youtube.com/watch?v=YNoGjBhncZ0"],
+        "tags": [
+            "security_engineer",
+            "application_security_engineer",
+            "cloud_security_engineer",
+            "infrastructure_security_engineer"
+        ]
     },
     "How do we restrict access to the production environment?": {
         "comment": [""],
         "resources": [],
-        "tags": []
+        "tags": [
+            "security_engineer",
+            "application_security_engineer",
+            "cloud_security_engineer",
+            "infrastructure_security_engineer"
+        ]
     },
     "How do we secure our application?": {
         "comment": [""],
         "resources": [],
-        "tags": []
+        "tags": [
+            "security_engineer",
+            "application_security_engineer",
+            "cloud_security_engineer",
+            "infrastructure_security_engineer"
+        ]
     },
     "A developer comes to you with question on how to secure secret token used in application. What would you recommend?": {
         "comment": [""],
         "resources": [],
-        "tags": []
+        "tags": [
+            "security_engineer",
+            "application_security_engineer",
+            "cloud_security_engineer",
+            "infrastructure_security_engineer"
+        ]
     },
     "How do we secure microservices?": {
         "comment": [""],
         "resources": [],
-        "tags": []
+        "tags": [
+            "security_engineer",
+            "application_security_engineer",
+            "cloud_security_engineer",
+            "infrastructure_security_engineer"
+        ]
     },
     "How do we secure Kubernetes, EKS, ECS?": {
-        "comment": [""],
-        "resources": [],
-        "tags": []
+        "comment": ["Pending contribution..."],
+        "resources": ["N/A"],
+        "tags": [
+            "security_engineer",
+            "application_security_engineer",
+            "cloud_security_engineer",
+            "infrastructure_security_engineer"
+        ]
     },
     "How do you design a token generator service used in MFA?": {
-        "comment": [""],
-        "resources": ["security_engineer"],
-        "tags": ["security_engineer"]
+        "comment": ["Pending contribution..."],
+        "resources": ["N/A"],
+        "tags": ["security_engineer", "application_security_engineer"]
     },
     "How do you design a key management service similar to AWS KMS?": {
-        "comment": [""],
-        "resources": ["security_engineer"],
-        "tags": ["security_engineer"]
+        "comment": ["Pending contribution..."],
+        "resources": ["N/A"],
+        "tags": ["security_engineer", "application_security_engineer"]
     },
     "How do you design a secret management service similar to AWS Secret Manager/HashiCorp Vault?": {
-        "comment": [""],
-        "resources": ["security_engineer"],
-        "tags": ["security_engineer"]
+        "comment": ["Pending contribution..."],
+        "resources": ["N/A"],
+        "tags": ["security_engineer", "application_security_engineer"]
     }
 }
