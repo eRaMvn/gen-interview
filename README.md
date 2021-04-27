@@ -43,3 +43,5 @@ For example:
 ```
 
 To add more topics, you can create a json file and modify the `/src/pages/interview.js`. I used React hook `useEffect` that will import all json files under `InterviewLayout` component. I also use `useContext` to pass the data to the `InterviewHeader` component. Make sure you import and pass the appropriate data to the `InterviewHeader` component.
+
+My React Skill sucks so please improve the website if you have any suggestions 😄

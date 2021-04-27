@@ -12,6 +12,7 @@ import {
 import { StaticImage } from 'gatsby-plugin-image';
 import { navigate } from 'gatsby';
 import ResponsiveContainer from '../components/ResponsiveContainer';
+import Seo from '../components/Seo';
 
 const HomeHeader = ({ mobile }) => {
     const navigateToInterview = () => {
@@ -19,6 +20,7 @@ const HomeHeader = ({ mobile }) => {
     };
     return (
         <Container text>
+            <Seo title="Home" />
             <Header
                 as="h1"
                 content="Welcome!"

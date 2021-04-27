@@ -18,6 +18,7 @@ import ResponsiveContainer from '../components/ResponsiveContainer';
 import securityQData from '../data/security_questions.json';
 import behaviorQData from '../data/behavioral_questions.json';
 import { getQuestionByTags, setDropDownValues } from '../helper/common';
+import Seo from '../components/Seo';
 
 const InterviewContext = React.createContext();
 
@@ -98,6 +99,7 @@ const InterviewHeader = ({ mobile }) => {
 
     return (
         <Container text>
+            <Seo title="Interview Questions" />
             <Header
                 as="h1"
                 content="Question Generator"

@@ -5,10 +5,23 @@
  */
 
 module.exports = {
-    /* Your site config here */
+    siteMetadata: {
+        title: `Interview Practice`,
+        description: `Practice your interview skills with questions`,
+        author: `Thien Phan`,
+        keywords: [
+            'interview questions',
+            'skill development',
+            'interview practice',
+            'questions',
+            'interview',
+        ],
+        siteUrl: `https://interviewpractice.info`,
+    },
     plugins: [
         `gatsby-plugin-image`,
         `gatsby-plugin-sharp`,
         `gatsby-transformer-sharp`, // Needed for dynamic images
+        `gatsby-plugin-react-helmet`,
     ],
 };
