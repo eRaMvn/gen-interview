@@ -3,7 +3,7 @@
      | |  _|  _| |  \| |_____| ||  \| | | | |  _| | |_) \ \ / / | ||  _|  \ \ /\ / /
      | |_| | |___| |\  |_____| || |\  | | | | |___|  _ < \ V /  | || |___  \ V  V /
       \____|_____|_| \_|    |___|_| \_| |_| |_____|_| \_\ \_/  |___|_____|  \_/\_/
-
+[![Netlify Status](https://api.netlify.com/api/v1/badges/1211c9a4-8a79-403e-9ece-62a1fded649b/deploy-status)](https://app.netlify.com/sites/determined-franklin-795428/deploys)
 
 `gen-interview` is a web application to help job seekers practice their interview skills by generating practical real world interview questions by topics and roles
 

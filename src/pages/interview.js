@@ -116,26 +116,30 @@ const InterviewHeader = ({ mobile }) => {
                     <StopWatch />
                 </Grid.Column>
                 <Grid.Column>
-                    {recordButtonEnabled ? null : (
-                        <Message error compact>
-                            Please allow access to your microphone to record
-                            yourself and reload the page!
-                        </Message>
-                    )}
-                    <Popup
-                        trigger={<audio src={mediaBlobUrl} controls />}
-                        content="After recording, download audio by clicking play and the three dots"
-                        on={['hover', 'click']}
-                    />
-                    <Button
-                        color="red"
-                        size="large"
-                        onClick={handleRecorder}
-                        disabled={!recordButtonEnabled}
-                    >
-                        {recordButtonState}
-                        <Icon name="record right" />
-                    </Button>
+                    <Grid.Row>
+                        {recordButtonEnabled ? null : (
+                            <Message error compact>
+                                Please allow access to your microphone to record
+                                yourself and reload the page!
+                            </Message>
+                        )}
+                        <Popup
+                            trigger={<audio src={mediaBlobUrl} controls />}
+                            content="After recording, download audio by clicking play and the three dots"
+                            on={['hover', 'click']}
+                        />
+                    </Grid.Row>
+                    <Grid.Row>
+                        <Button
+                            color="red"
+                            size="large"
+                            onClick={handleRecorder}
+                            disabled={!recordButtonEnabled}
+                        >
+                            {recordButtonState}
+                            <Icon name="record right" />
+                        </Button>
+                    </Grid.Row>
                 </Grid.Column>
             </Grid>
 
