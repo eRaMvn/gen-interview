@@ -57,9 +57,9 @@ exports.onPreInit = () => {
                         `${jsonFile[question].comment}\n`,
                     );
                     questionAndResourceStream.write(`Resources:\n`);
-                    questionAndResourceStream.write(
-                        `${jsonFile[question].resources}\n`,
-                    );
+                    for (let eachResource of jsonFile[question].resources) {
+                        questionAndResourceStream.write(`${eachResource}\n`);
+                    }
                     questionAndResourceStream.write(
                         `---------------------------------------------\n`,
                     );
