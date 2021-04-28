@@ -19,6 +19,14 @@ module.exports = {
         siteUrl: `https://interviewpractice.info`,
     },
     plugins: [
+        {
+            resolve: `gatsby-plugin-google-analytics`,
+            options: {
+                trackingId: 'G-YFJMYQ27BK',
+                head: true,
+                anonymize: true,
+            },
+        },
         `gatsby-plugin-image`,
         `gatsby-plugin-sharp`,
         `gatsby-transformer-sharp`, // Needed for dynamic images

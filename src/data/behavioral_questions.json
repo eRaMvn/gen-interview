@@ -11,11 +11,71 @@
         ],
         "tags": []
     },
-    "Give an example of a goal you reached and tell me how you achieved it?": {
+    "Give an example of a goal you reached and tell me how you achieved it": {
         "comment": ["No comment"],
         "resources": [
             "https://www.thebalancecareers.com/job-interview-question-how-will-you-achieve-your-goals-2061245"
         ],
+        "tags": []
+    },
+    "Describe a situation where you made an important decision without consulting your manager. What was the situation and how did it turn out?": {
+        "comment": ["No comment"],
+        "resources": ["N/A"],
+        "tags": []
+    },
+    "Tell me about a time when you have worked against tight deadlines": {
+        "comment": ["No comment"],
+        "resources": ["N/A"],
+        "tags": []
+    },
+    "Tell me about a time when you were able to remove a roadblock preventing your team from making progress": {
+        "comment": ["No comment"],
+        "resources": ["N/A"],
+        "tags": []
+    },
+    "Tell me about a time when you went above and beyond the call of duty of your role": {
+        "comment": ["No comment"],
+        "resources": ["N/A"],
+        "tags": []
+    },
+    "Tell me about a time where you not only met a goal but considerably exceeded expectations": {
+        "comment": ["No comment"],
+        "resources": ["N/A"],
+        "tags": []
+    },
+    "Tell me about a problem you had to solve that required in-depth thought and analysis": {
+        "comment": ["No comment"],
+        "resources": ["N/A"],
+        "tags": []
+    },
+    "Give an example of a time where you were not able to meet a commitment to a team member": {
+        "comment": ["No comment"],
+        "resources": ["N/A"],
+        "tags": []
+    },
+    "Tell me about a time you uncovered a significant problem in your team": {
+        "comment": ["No comment"],
+        "resources": ["N/A"],
+        "tags": []
+    },
+    "Tell me about a time that you strongly disagreed with your manager on something you deemed to be very important to the business.  What was it about and how did you handle it?": {
+        "comment": ["No comment"],
+        "resources": ["N/A"],
+        "tags": []
+    },
+    "When do you decide to go along with the group decision even if you disagree?": {
+        "comment": ["No comment"],
+        "resources": ["N/A"],
+        "tags": []
+    },
+    "Tell me about a time when you didn’t know what to do next or how to solve a challenging problem": {
+        "comment": ["No comment"],
+        "resources": ["N/A"],
+        "tags": []
+    },
+    "Tell me about a time when you took on something significant outside your area of responsibility": {
+        "comment": ["No comment"],
+        "resources": ["N/A"],
         "tags": []
     }
 }

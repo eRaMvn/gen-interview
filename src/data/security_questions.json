@@ -306,8 +306,10 @@
         ]
     },
     "Given a AWS account, what are the steps you take to secure it?": {
-        "comment": ["abc"],
-        "resources": ["sadas"],
+        "comment": [
+            "I can only give you guidance how you should answer this as this is a very broad question. Security in AWS is about monitoring existing resources and services, preventing misconfigurations from being introduced and fixing current findings. \n-I would check IAM first and see how it is configured (the use of users, groups, roles and permissions, whether SSO is enabled or not)\n-I would then check where we store the most sensitive data (S3, RDS, DynamoDB, etc...) and how we configure those services and resources. A lot of can be pivoted here like resource policy for S3, security group for RDS, etc...\n-I would then check how web applications are deployed and configured (EC2, EKS and Lambda security with the focus on NACL, Security Group and API security)\n-We want to know if GuardDuty, CloudTrail, Config is enabled. There are other security related services that can be used like Trusted Advisor.\nThose are some starting points"
+        ],
+        "resources": ["N/A"],
         "tags": [
             "security_engineer",
             "cloud_security_engineer",
@@ -315,8 +317,10 @@
         ]
     },
     "Given a GCP project, what are the steps you take to secure it?": {
-        "comment": ["abc"],
-        "resources": ["sadas"],
+        "comment": [
+            "I can only give you guidance how you should answer this as this is a very broad question. Security in GCP is about monitoring existing resources and services, preventing misconfigurations from being introduced and fixing current findings. \n-I would check IAM first and see how it is configured (the use of users, groups, service accounts, roles, whether SSO is enabled or not)\n-I would then check where we store the most sensitive data (Cloud Storage, BigQuery, Bigtable, Cloud SQL, etc...) and how we configure those services and resources. A lot of can be pivoted here like resource policy for Cloud Storage, view for BigQuery, etc...\n-I would then check how web applications are deployed and configured (Compute Engine, GKE and Cloud Function security with the focus on NACL, Security Group and API security)\n-We want to know if Security Command Center with Threat Detection is enabled. There are other security related services that can be used like Policy Intelligence.\nThose are some starting points"
+        ],
+        "resources": ["N/A"],
         "tags": [
             "security_engineer",
             "cloud_security_engineer",
@@ -415,8 +419,10 @@
         ]
     },
     "How do we restrict access to the production environment?": {
-        "comment": [""],
-        "resources": [],
+        "comment": [
+            "I would say the ideal way would be to not allow any manual changes (changes using the console) in the production environment. Every deployment must be through infrastructure as code and pipeline to scan for vulnerabilities. Access to production environment should be limited to read only and only grant write access to service account that CI tools use. In case engineers need to access production environment, we can have break glass procedures to grant them temporary access but with approval from management"
+        ],
+        "resources": ["N/A"],
         "tags": [
             "security_engineer",
             "application_security_engineer",
@@ -424,7 +430,7 @@
             "infrastructure_security_engineer"
         ]
     },
-    "How do we secure our application?": {
+    "How do we secure our web application?": {
         "comment": [""],
         "resources": [],
         "tags": [
@@ -435,8 +441,13 @@
         ]
     },
     "A developer comes to you with question on how to secure secret token used in application. What would you recommend?": {
-        "comment": [""],
-        "resources": [],
+        "comment": [
+            "A recommended way would be store secrets in secret manager such as HashiCorp Vault, AWS Secret Manager. Why?\n-Secrets are secured and encrypted\n-Secrets can be access through APIs\n-Secrets in source code should be avoided at all cost to prevent compromise"
+        ],
+        "resources": [
+            "https://www.youtube.com/watch?v=VYfl-DpZ5wM",
+            "https://www.youtube.com/watch?v=Y3Gn_iP3FlE"
+        ],
         "tags": [
             "security_engineer",
             "application_security_engineer",
@@ -444,9 +455,15 @@
             "infrastructure_security_engineer"
         ]
     },
-    "How do we secure microservices?": {
-        "comment": [""],
-        "resources": [],
+    "How do we secure micro-services?": {
+        "comment": [
+            "This is a vague question. A general way to answer this is to ask more questions such as:\n-Tech stack\n-Whether we are using managed service like EKS, GKE or host our own Kubernetes cluster\n-How services talk to one another (encrypted traffic or not) using what authentication method\n-How we gain visibility into the service mesh using technology such as Istio\n-Network traffic monitoring and network policy\n-Pod Security Policy"
+        ],
+        "resources": [
+            "https://www.youtube.com/watch?v=VtUQINsYXDM",
+            "https://www.youtube.com/watch?v=hTgff3cJ6AU",
+            "https://www.youtube.com/watch?v=16fgzklcF7Y"
+        ],
         "tags": [
             "security_engineer",
             "application_security_engineer",
@@ -455,8 +472,17 @@
         ]
     },
     "How do we secure Kubernetes, EKS, ECS?": {
-        "comment": ["Pending contribution..."],
-        "resources": ["N/A"],
+        "comment": [
+            "There are a lot of good talks on this topic. A few things to consider are:\n-Container Image (How to create golden image)\n-Pod Security (Root access restriction, runtime usage)\n-Network Security\n-Traffic between services (monitoring solution)\n-Runtime Security\n-Roles and users access\n-Certificate authority and CSR process\n-etc..."
+        ],
+        "resources": [
+            "https://www.youtube.com/watch?v=4l4Kuds8O3s",
+            "https://www.youtube.com/watch?v=TdQoWEHAl0k",
+            "https://www.youtube.com/watch?v=wqsUfvRyYpw",
+            "https://www.youtube.com/watch?v=16fgzklcF7Y",
+            "https://www.youtube.com/watch?v=6zDrLvpfCK4",
+            "https://www.youtube.com/watch?v=DNKcRUyz4Hw"
+        ],
         "tags": [
             "security_engineer",
             "application_security_engineer",
