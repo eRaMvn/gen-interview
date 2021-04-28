@@ -297,8 +297,12 @@
         ]
     },
     "What are the differences between security group and network firewall in AWS?": {
-        "comment": ["abc"],
-        "resources": ["sadas"],
+        "comment": [
+            "Security group is stateful firewall while network firewall is stateless firewall"
+        ],
+        "resources": [
+            "https://docs.aws.amazon.com/vpc/latest/userguide/VPC_SecurityGroups.html"
+        ],
         "tags": [
             "security_engineer",
             "infrastructure_security_engineer",
@@ -328,8 +332,10 @@
         ]
     },
     "What are some of the services AWS provides to clients to secure their accounts?": {
-        "comment": [""],
-        "resources": [],
+        "comment": [
+            "There are a few services that you definitely need to know in details:\n-CloudTrail\n-GuardDuty\n-Config\n-Security Hub\n-CloudWatch\n-Trusted Advisor\n-Amazon Detective\n-AWS WAF"
+        ],
+        "resources": ["https://aws.amazon.com/products/security/?nc=sn&loc=2"],
         "tags": [
             "security_engineer",
             "cloud_security_engineer",
@@ -337,8 +343,12 @@
         ]
     },
     "What are some of the services GCP provides to clients to secure their accounts?": {
-        "comment": [""],
-        "resources": [],
+        "comment": [
+            "There are a few services that you definitely need to know in details:\n-Security Command Center\n-Cloud Data Loss Prevention\n-Firewalls\n-Identity Aware Proxy\n-Cloud Monitor\n-Cloud Armor"
+        ],
+        "resources": [
+            "https://cloud.google.com/products/security-and-identity"
+        ],
         "tags": [
             "security_engineer",
             "cloud_security_engineer",
@@ -346,70 +356,123 @@
         ]
     },
     "Given a three tier web application that is hosted on EC2 and RDS, what would you recommend to secure the application in AWS?": {
-        "comment": [""],
-        "resources": [],
+        "comment": [
+            "We have to understand how the application was designed. What is the technology used? Securing front end application hosted on S3 bucket is different than application running in ElasticBeanstalk or EC2. When it comes to securing EC2 instances, think about image security, patch management, the traffic going in and going out from the instance. We should have a public subnet for public facing instances, and security group rules must be set up to only allow traffics from certain ports like 80 or 443 to come in. Another subnet can be used to put RDS instances in and security group rule set up to only allow traffic from the public subnet to come in. All traffic should be encrypted. The roles attached to the instances should follow least privilege principle. Those are some of the pointers."
+        ],
+        "resources": ["N/A"],
         "tags": [
             "security_engineer",
             "cloud_security_engineer",
-            "infrastructure_security_engineer"
+            "infrastructure_security_engineer",
+            "application_security_engineer"
         ]
     },
     "Given a three tier web application that is hosted on EC2 and RDS, what would you recommend to secure the application in GCP?": {
-        "comment": [""],
-        "resources": [],
+        "comment": [
+            "We have to understand how the application was designed. What is the technology used? Securing front end application hosted on Cloud Storage bucket is different than application running in AppEngine or Compute Engine. When it comes to securing Compute Engine instances, think about image security, patch management, the traffic going in and going out from the instance. We should have a public subnet for public facing instances, and firewall rules must be set up to only allow traffics from certain ports like 80 or 443 to come in. Another subnet can be used to put RDS instances in and security group rule set up to only allow traffic from the public subnet to come in. All traffic should be encrypted. The service accounts attached to the instances should follow least privilege principle. Those are some of the pointers."
+        ],
+        "resources": ["N/A"],
         "tags": [
             "security_engineer",
             "cloud_security_engineer",
-            "infrastructure_security_engineer"
+            "infrastructure_security_engineer",
+            "application_security_engineer"
         ]
     },
     "How do you secure API endpoints?": {
-        "comment": [""],
-        "resources": [],
-        "tags": []
+        "comment": [
+            "There are a couple things we can mention:\n-Cross-Origin Resource Sharing (CORS)\n-Rate limiting\n-API key authentication\n-Request validation\n-Web Application Firewall"
+        ],
+        "resources": [
+            "https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-method-request-validation.html"
+        ],
+        "tags": [
+            "security_engineer",
+            "cloud_security_engineer",
+            "infrastructure_security_engineer",
+            "application_security_engineer"
+        ]
     },
     "How do you secure PII data?": {
-        "comment": [""],
-        "resources": [],
-        "tags": []
+        "comment": [
+            "A vague question, and we would want to ask for elaboration on what they want to secure and in what context.\n-In general, we want to follow the least privilege and separation of duties principles.\n-PII data should be encrypted with KMS.\n-Encryption keys should be rotated frequently.\n-PII data should be scrubbed in the environments other than production environment\n-Database password should be rotated and kept in Secret Manager"
+        ],
+        "resources": ["https://aws.amazon.com/blogs/security/tag/pii/"],
+        "tags": [
+            "security_analyst",
+            "security_engineer",
+            "cloud_security_engineer",
+            "infrastructure_security_engineer",
+            "application_security_engineer"
+        ]
     },
     "What can we do to secure database?": {
-        "comment": [""],
-        "resources": [],
-        "tags": []
+        "comment": [
+            "In general, we would want:\n-Put database in private subnet and only allow inbound traffic from subnet hosting web application\n-Rotate admin password and kept in Secret Manager and make sure to rotate frequently\n-Encrypt the database with KMS CMK or customer's encryption key\n-Access to read/write to the database should be restricted to roles and follow least privilege principle"
+        ],
+        "resources": ["https://aws.amazon.com/rds/features/security/"],
+        "tags": [
+            "security_analyst",
+            "security_engineer",
+            "cloud_security_engineer",
+            "infrastructure_security_engineer",
+            "application_security_engineer"
+        ]
     },
     "How do you design a vulnerability management service in AWS/GCP at scale?": {
-        "comment": [""],
-        "resources": [],
-        "tags": []
-    },
-    "How do you detect vulnerability and misconfigurations in AWS/GCP at scale?": {
-        "comment": [""],
-        "resources": [],
-        "tags": []
-    },
-    "How do you remediate vulnerability and misconfigurations in AWS/GCP at scale?": {
-        "comment": [""],
-        "resources": [],
-        "tags": []
+        "comment": [
+            "The question is more about asking how we can detect vulnerabilities and misconfigurations at scale. Each company does this differently. In AWS, we can detect vulnerabilities with GuardDuty, Config or custom Lambda functions or ECS that keep running and checking all resources. We can use third party services like Dome9 or Prisma Cloud. Remediating findings is what is difficult because we have to think about how we can keep track of findings to avoid duplicates, fix findings without interrupting business, and how we can whitelist a certain finding, etc...These are just some pointers to think about"
+        ],
+        "resources": ["https://www.youtube.com/watch?v=-BjCREhT9O8"],
+        "tags": [
+            "security_engineer",
+            "cloud_security_engineer",
+            "infrastructure_security_engineer",
+            "application_security_engineer"
+        ]
     },
     "What are the differences between IAM role and IAM group in AWS?": {
-        "comment": [""],
-        "resources": [],
-        "tags": []
+        "comment": [
+            "Roles can be use to give out a set of permissions for other to use for a brief set of period. Group is a set of users without permissions. We have to give group permissions for members within the group to perform tasks"
+        ],
+        "resources": ["https://aws.amazon.com/iam/faqs/"],
+        "tags": [
+            "security_engineer",
+            "cloud_security_engineer",
+            "infrastructure_security_engineer",
+            "application_security_engineer"
+        ]
     },
     "What are some of the best practices to secure IAM?": {
-        "comment": [""],
-        "resources": [],
-        "tags": []
+        "comment": [
+            "From my experience, it is best that we avoid the use of IAM users. If we have to use IAM users, make sure to enable MFA and create strong password policy. We should use roles instead and set up identity providers so that user can assume and use roles based on their current credentials in Active Directory. Access given to them should be roles. Permissions given to roles should be in details to the API levels and resource levels in the case of AWS. In GCP, we can grant access to certain resources in the resource page."
+        ],
+        "resources": [
+            "https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html"
+        ],
+        "tags": [
+            "security_engineer",
+            "cloud_security_engineer",
+            "infrastructure_security_engineer",
+            "application_security_engineer"
+        ]
     },
     "What are some of the ways to manage EC2 instances?": {
-        "comment": [""],
-        "resources": [],
-        "tags": []
+        "comment": [
+            "There are a few way to manage EC2 instances:\n-Using bastion host\n-Identity Aware Proxy\n-Configuration management tool (Salt, Ansible, etc...)\n-SSH keys and managing keys distribution\nEach has pros and cons"
+        ],
+        "resources": ["N/A"],
+        "tags": [
+            "security_engineer",
+            "cloud_security_engineer",
+            "infrastructure_security_engineer",
+            "application_security_engineer"
+        ]
     },
     "How do we execute commands in EC2 instances in a secure way?": {
-        "comment": [""],
+        "comment": [
+            "It is best that we use configuration management tool like Ansible or even AWS SSM to manage EC2 instances for us. We want to avoid having to go to each individual instance and instead manage the changes and configuration from a central location"
+        ],
         "resources": ["https://www.youtube.com/watch?v=YNoGjBhncZ0"],
         "tags": [
             "security_engineer",
@@ -423,16 +486,6 @@
             "I would say the ideal way would be to not allow any manual changes (changes using the console) in the production environment. Every deployment must be through infrastructure as code and pipeline to scan for vulnerabilities. Access to production environment should be limited to read only and only grant write access to service account that CI tools use. In case engineers need to access production environment, we can have break glass procedures to grant them temporary access but with approval from management"
         ],
         "resources": ["N/A"],
-        "tags": [
-            "security_engineer",
-            "application_security_engineer",
-            "cloud_security_engineer",
-            "infrastructure_security_engineer"
-        ]
-    },
-    "How do we secure our web application?": {
-        "comment": [""],
-        "resources": [],
         "tags": [
             "security_engineer",
             "application_security_engineer",
@@ -473,7 +526,7 @@
     },
     "How do we secure Kubernetes, EKS, ECS?": {
         "comment": [
-            "There are a lot of good talks on this topic. A few things to consider are:\n-Container Image (How to create golden image)\n-Pod Security (Root access restriction, runtime usage)\n-Network Security\n-Traffic between services (monitoring solution)\n-Runtime Security\n-Roles and users access\n-Certificate authority and CSR process\n-etc..."
+            "There are a lot of good talks on this topic. A few things to consider are:\n-Container Image (How to create golden image)\n-Pod Security (Root access restriction, runtime usage)\n-Network Security\n-Traffic between services (monitoring solution)\n-Runtime Security\n-Roles and users access\n-Certificate authority and CSR process\netc..."
         ],
         "resources": [
             "https://www.youtube.com/watch?v=4l4Kuds8O3s",
