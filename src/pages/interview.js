@@ -332,7 +332,7 @@ const InterviewLayout = () => {
     );
 
     const checkIfAudioEnabled = () => {
-        navigator.getUserMedia(
+        navigator.mediaDevices.getUserMedia(
             { audio: true },
             function (stream) {
                 if (stream.getAudioTracks().length > 0) {
